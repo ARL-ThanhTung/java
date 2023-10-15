@@ -21,7 +21,13 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public CardEntity getCard(Long id) {
-        return cardRepository.findById(id).get();
+        try {
+            return cardRepository.findById(id).get();
+        } catch(Exception e){
+            System.out.println("Error service get Card by id");
+            System.out.println(e);
+        }
+        return null ;
     }
 
     @Override

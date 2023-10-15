@@ -29,6 +29,12 @@ public class ProductDetailEntity {
     private String description;
 
     @Column( nullable = true )
+    private String video;
+
+    @Column( nullable = true )
+    private String image;
+
+    @Column( nullable = true )
     private float price;
 
     @Column( nullable = true )
@@ -42,6 +48,14 @@ public class ProductDetailEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 
     public Long getId() {
@@ -103,9 +117,9 @@ public class ProductDetailEntity {
     @JoinColumn(name = "color_id")
     private ColorEntity color;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "image_id")
-    private ImageEntity image;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "image_id")
+//    private ImageEntity image;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "os_id")
@@ -119,6 +133,13 @@ public class ProductDetailEntity {
     @JoinColumn(name = "rom_id")
     private RomEntity rom;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public ProductEntity getProduct() {
         return product;
@@ -144,13 +165,13 @@ public class ProductDetailEntity {
         this.color = color;
     }
 
-    public ImageEntity getImage() {
-        return image;
-    }
-
-    public void setImage(ImageEntity image) {
-        this.image = image;
-    }
+//    public ImageEntity getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(ImageEntity image) {
+//        this.image = image;
+//    }
 
     public OSEntity getOs() {
         return os;

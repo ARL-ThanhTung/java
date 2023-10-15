@@ -14,10 +14,32 @@ public class ProductDetailResponse {
 
     private Long id;
     private String description;
+
+
+    private String video;
+
+    private String image;
     private float price;
     private String camera;
     private String cameraSelf;
     private String battery;
+
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;
@@ -69,7 +91,7 @@ public class ProductDetailResponse {
 
     private RamResponse ram;
     private RomResponse rom;
-    private ImageResponse image;
+    //private ImageResponse image;
     private OsResponse os;
     private ColorResponse color;
     private CardResponse card;
@@ -93,13 +115,13 @@ public class ProductDetailResponse {
         this.rom = rom;
     }
 
-    public ImageResponse getImage() {
-        return image;
-    }
-
-    public void setImage(ImageResponse image) {
-        this.image = image;
-    }
+//    public ImageResponse getImage() {
+//        return image;
+//    }
+//
+//    public void setImage(ImageResponse image) {
+//        this.image = image;
+//    }
 
     public OsResponse getOs() {
         return os;

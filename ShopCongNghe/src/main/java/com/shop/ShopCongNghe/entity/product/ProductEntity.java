@@ -34,6 +34,13 @@ public class ProductEntity {
     private String title;
 
     @Column( nullable = true )
+    private String screen;
+
+    @Column( nullable = true )
+    private String chip;
+
+
+    @Column( nullable = true )
     private String name;
 
     @Column( nullable = true )
@@ -46,8 +53,6 @@ public class ProductEntity {
     public Long getId() {
         return id;
     }
-
-
 
     public String getTitle() {
         return title;
@@ -96,6 +101,22 @@ public class ProductEntity {
 
     public CategoryEntity getCategory() {
         return category;
+    }
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
     }
 
     public void checkBranch(BranchEntity branch){

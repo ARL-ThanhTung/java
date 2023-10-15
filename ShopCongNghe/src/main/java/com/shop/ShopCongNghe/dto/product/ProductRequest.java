@@ -8,6 +8,10 @@ public class ProductRequest {
 
     private String name;
 
+    private String screen;
+
+    private String chip;
+
     private String image;
 
     private String description;
@@ -15,6 +19,23 @@ public class ProductRequest {
     private Long category_id ;
 
     private Long branch_id ;
+
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
 
     public String getTitle() {
         return title;

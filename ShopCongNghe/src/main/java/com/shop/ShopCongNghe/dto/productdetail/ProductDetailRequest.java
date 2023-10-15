@@ -6,6 +6,9 @@ public class ProductDetailRequest {
     //private ProductDetailEntity productDetailEntity;
     //private Long id;
     private String description;
+    private String video;
+
+    private String image;
     private float price;
     private String camera;
     private String cameraSelf;
@@ -20,7 +23,7 @@ public class ProductDetailRequest {
     private Long rom_id;
     private Long os_id;
     private Long color_id;
-    private Long image_id;
+    //private Long image_id;
     private Long card_id;
 
 //    public Long getId() {
@@ -30,6 +33,23 @@ public class ProductDetailRequest {
 //    public void setId(Long id) {
 //        this.id = id;
 //    }
+
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
+    }
 
     public String getDescription() {
         return description;
@@ -119,13 +139,13 @@ public class ProductDetailRequest {
         this.color_id = color_id;
     }
 
-    public Long getImage_id() {
-        return image_id;
-    }
-
-    public void setImage_id(Long image_id) {
-        this.image_id = image_id;
-    }
+//    public Long getImage_id() {
+//        return image_id;
+//    }
+//
+//    public void setImage_id(Long image_id) {
+//        this.image_id = image_id;
+//    }
 
     public Long getCard_id() {
         return card_id;

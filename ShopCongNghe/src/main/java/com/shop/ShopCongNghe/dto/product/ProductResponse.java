@@ -5,9 +5,13 @@ import com.shop.ShopCongNghe.dto.category.CategoryResponse;
 
 public class ProductResponse {
 
-    private Long id; 
+    private Long id;
     
     private String title;
+
+    private String screen;
+
+    private String chip;
 
     private String name;
 
@@ -18,6 +22,23 @@ public class ProductResponse {
     private BranchResponse branch;
 
     private CategoryResponse category;
+
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
 
     public String getTitle() {
         return title;

@@ -43,11 +43,12 @@ public class ProductServiceImpl implements ProductService {
             product.setName(productRequest.getName());
             product.setDescription((productRequest.getDescription()));
             product.setImage(productRequest.getImage());
+            product.setChip(productRequest.getChip());
+            product.setScreen(productRequest.getScreen());
 
             BranchEntity exist_branch = branchService.getBranch(productRequest.getBranch_id());
             CategoryEntity exist_category = categoryService.getCategory(productRequest.getBranch_id());
             if( exist_branch != null ){
-                System.out.println("aaa");
                 product.checkBranch(exist_branch);
             }
             if( exist_category != null ){
@@ -78,6 +79,8 @@ public class ProductServiceImpl implements ProductService {
             proRes.setName( productEntity.get(i).getName() ) ;
             proRes.setDescription( productEntity.get(i).getDescription() );
             proRes.setImage( productEntity.get(i).getImage() );
+            proRes.setChip(productEntity.get(i).getChip());
+            proRes.setScreen(productEntity.get(i).getScreen());
 
             if (productEntity.get(i).getBranch() != null){
                 BranchResponse branch = new BranchResponse();

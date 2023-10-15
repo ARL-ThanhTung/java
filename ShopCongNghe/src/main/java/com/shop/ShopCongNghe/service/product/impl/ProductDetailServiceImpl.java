@@ -62,13 +62,15 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setCameraSelf(productDetailRequest.getCameraSelf());
             productDetail.setBattery(productDetailRequest.getBattery());
             productDetail.setDescription(productDetailRequest.getDescription());
+            productDetail.setVideo(productDetailRequest.getVideo() );
+            productDetail.setImage(productDetailRequest.getImage());
 
             ProductEntity check_product = productService.getProduct(productDetailRequest.getProduct_id());
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
             RomEntity check_rom = romService.getRom(productDetailRequest.getRom_id());
             OSEntity check_os = osService.getOS(productDetailRequest.getOs_id());
             ColorEntity check_color = colorService.getColor(productDetailRequest.getColor_id());
-            ImageEntity check_image = imageService.getImage(productDetailRequest.getImage_id());
+            //ImageEntity check_image = imageService.getImage(productDetailRequest.getImage_id());
             CardEntity check_card = cardService.getCard(productDetailRequest.getCard_id());
             if ( check_product != null ){
                 productDetail.setProduct( check_product );
@@ -85,9 +87,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             if ( check_color != null ){
                 productDetail.setColor( check_color );
             }
-            if ( check_image != null ){
-                productDetail.setImage( check_image );
-            }
+//            if ( check_image != null ){
+//                productDetail.setImage( check_image );
+//            }
             if ( check_card != null ){
                 productDetail.setCard( check_card );
             }
@@ -122,10 +124,10 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 romResponse.setName(productDetailEntities.get(i).getRom().getName());
                 productDetail.setRom(romResponse);
                 // image
-                ImageResponse imageResponse = new ImageResponse();
-                imageResponse.setId(productDetailEntities.get(i).getImage().getId());
-                imageResponse.setName(productDetailEntities.get(i).getImage().getName());
-                productDetail.setImage(imageResponse);
+//                ImageResponse imageResponse = new ImageResponse();
+//                imageResponse.setId(productDetailEntities.get(i).getImage().getId());
+//                imageResponse.setName(productDetailEntities.get(i).getImage().getName());
+//                productDetail.setImage(imageResponse);
                 // card
                 CardResponse cardResponse = new CardResponse();
                 cardResponse.setId(productDetailEntities.get(i).getCard().getId());
@@ -149,6 +151,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 product.setName(productDetailEntities.get(i).getProduct().getName());
                 product.setImage(productDetailEntities.get(i).getProduct().getImage());
                 product.setDescription(productDetailEntities.get(i).getProduct().getDescription());
+                product.setChip(productDetailEntities.get(i).getProduct().getChip());
+                product.setScreen(productDetailEntities.get(i).getProduct().getScreen());
                 BranchResponse branchResponse = new BranchResponse();
                 branchResponse.setId(productDetailEntities.get(i).getProduct().getBranch().getId());
                 branchResponse.setName(productDetailEntities.get(i).getProduct().getBranch().getName());
@@ -161,6 +165,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
                 productDetail.setId(productDetailEntities.get(i).getId());
                 productDetail.setDescription(productDetailEntities.get(i).getDescription());
+                productDetail.setImage(productDetailEntities.get(i).getImage());
+                productDetail.setVideo(productDetailEntities.get(i).getVideo());
                 productDetail.setPrice(productDetailEntities.get(i).getPrice());
                 productDetail.setCamera(productDetailEntities.get(i).getCamera());
                 productDetail.setCameraSelf(productDetailEntities.get(i).getCameraSelf());
@@ -194,10 +200,10 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             romResponse.setName(productDetailEntities.getRom().getName());
             productDetail.setRom(romResponse);
             // image
-            ImageResponse imageResponse = new ImageResponse();
-            imageResponse.setId(productDetailEntities.getImage().getId());
-            imageResponse.setName(productDetailEntities.getImage().getName());
-            productDetail.setImage(imageResponse);
+//            ImageResponse imageResponse = new ImageResponse();
+//            imageResponse.setId(productDetailEntities.getImage().getId());
+//            imageResponse.setName(productDetailEntities.getImage().getName());
+//            productDetail.setImage(imageResponse);
             // card
             CardResponse cardResponse = new CardResponse();
             cardResponse.setId(productDetailEntities.getCard().getId());
@@ -221,6 +227,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             product.setName(productDetailEntities.getProduct().getName());
             product.setImage(productDetailEntities.getProduct().getImage());
             product.setDescription(productDetailEntities.getProduct().getDescription());
+            product.setChip(productDetailEntities.getProduct().getChip());
+            product.setScreen(productDetailEntities.getProduct().getScreen());
+
             BranchResponse branchResponse = new BranchResponse();
             branchResponse.setId(productDetailEntities.getProduct().getBranch().getId());
             branchResponse.setName(productDetailEntities.getProduct().getBranch().getName());
@@ -233,6 +242,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
 
             productDetail.setId(productDetailEntities.getId());
             productDetail.setDescription(productDetailEntities.getDescription());
+            productDetail.setImage(productDetailEntities.getImage());
+            productDetail.setVideo(productDetailEntities.getVideo());
             productDetail.setPrice(productDetailEntities.getPrice());
             productDetail.setCamera(productDetailEntities.getCamera());
             productDetail.setCameraSelf(productDetailEntities.getCameraSelf());
