@@ -1,6 +1,7 @@
 package com.shop.ShopCongNghe.entity.product;
 
 
+import com.shop.ShopCongNghe.entity.order_detail.OrderDetailEntity;
 import com.shop.ShopCongNghe.entity.product.detail.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,12 +27,15 @@ public class ProductDetailEntity {
     private Long id;
 
     @Column( nullable = true )
+    @Lob
     private String description;
 
     @Column( nullable = true )
+    @Lob
     private String video;
 
     @Column( nullable = true )
+    @Lob
     private String image;
 
     @Column( nullable = true )
@@ -165,6 +169,17 @@ public class ProductDetailEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rom_id")
     private RomEntity rom;
+
+    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderDetailEntity> order_detail = new ArrayList<>();
+
+    public List<OrderDetailEntity> getOrder_detail() {
+        return order_detail;
+    }
+
+    public void setOrder_detail(List<OrderDetailEntity> order_detail) {
+        this.order_detail = order_detail;
+    }
 
     public String getImage() {
         return image;

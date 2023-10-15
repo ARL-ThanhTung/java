@@ -80,7 +80,7 @@ public class ProductServiceImpl implements ProductService {
         List<ProductEntity> productEntity = productRepository.findAll();
         for( int i = 0 ; i < productEntity.size() ; i++ ){
             ProductResponse proRes = new ProductResponse();
-            proRes.setId(productEntity.get(i).getId()); 
+            proRes.setId(productEntity.get(i).getId());
             proRes.setTitle( productEntity.get(i).getTitle() );
             proRes.setName( productEntity.get(i).getName() ) ;
             proRes.setDescription( productEntity.get(i).getDescription() );

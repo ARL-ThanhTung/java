@@ -31,6 +31,7 @@ public class ProductEntity {
     private Long id;
 
     @Column( nullable = true )
+    @Lob
     private String title;
 
     @Column( nullable = true )
@@ -40,9 +41,11 @@ public class ProductEntity {
     private String name;
 
     @Column( nullable = true )
+    @Lob
     private String image;
 
     @Column( nullable = true )
+    @Lob
     private String description;
 
     public String getOrigin() {
