@@ -2,14 +2,12 @@ package com.shop.ShopCongNghe.controller.api.user;
 
 import com.shop.ShopCongNghe.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.shop.ShopCongNghe.entity.user.UserEntity;
 
 import java.util.List;
-
+import com.shop.ShopCongNghe.dto.user.UserRequest;
+import com.shop.ShopCongNghe.dto.user.UserResponse;
 
 @RestController
 public class UserAPI {
@@ -19,13 +17,16 @@ public class UserAPI {
 
 
     @PostMapping( "/users" )
-    public UserEntity addCustomer(@RequestBody UserEntity customer ){
-        return customerService.saveUser(customer);
+    public Boolean addCustomer(@RequestBody UserRequest user ){
+        return customerService.saveUser(user);
     }
 
-    @GetMapping("/users")
-    public List<UserEntity> showCustomer(){
-        return customerService.showAllUser();
+//    @GetMapping("/users")
+//    public List<UserEntity> showCustomer(){
+//        return customerService.showAllUser();
+//    }
+    @GetMapping("/users/{id}")
+    public UserResponse showUser(@PathVariable Long id){
+        return customerService.showUser(id);
     }
-
 }

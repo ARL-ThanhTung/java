@@ -8,6 +8,7 @@ import com.shop.ShopCongNghe.dto.detail.color.ColorResponse;
 import com.shop.ShopCongNghe.dto.detail.card.CardResponse;
 import com.shop.ShopCongNghe.dto.product.ProductResponse;
 
+import java.awt.*;
 import java.util.List;
 
 public class ProductDetailResponse {
@@ -25,6 +26,27 @@ public class ProductDetailResponse {
 
     private String chip;
     private String screen;
+
+
+    private RamResponse ram;
+    private RomResponse rom;
+    //private ImageResponse image;
+    private OsResponse os;
+
+    private CardResponse card;
+
+    private ProductResponse product ;
+
+
+    private List<ColorResponse> color;
+
+    public List<ColorResponse> getColor() {
+        return color;
+    }
+
+    public void setColor(List<ColorResponse> color) {
+        this.color = color;
+    }
 
     public String getChip() {
         return chip;
@@ -114,14 +136,6 @@ public class ProductDetailResponse {
         this.battery = battery;
     }
 
-    private RamResponse ram;
-    private RomResponse rom;
-    //private ImageResponse image;
-    private OsResponse os;
-    private ColorResponse color;
-    private CardResponse card;
-
-    private ProductResponse product ;
 
 
     public RamResponse getRam() {
@@ -156,13 +170,7 @@ public class ProductDetailResponse {
         this.os = os;
     }
 
-    public ColorResponse getColor() {
-        return color;
-    }
 
-    public void setColor(ColorResponse color) {
-        this.color = color;
-    }
 
     public CardResponse getCard() {
         return card;

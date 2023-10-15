@@ -4,7 +4,7 @@ import com.shop.ShopCongNghe.dto.detail.image.ImageResponse;
 
 import java.util.List;
 
-public class ColorResponse {
+public class ColorRequest {
     private Long id;
     private String name;
 
@@ -33,4 +33,5 @@ public class ColorResponse {
     public void setName(String name) {
         this.name = name;
     }
+
 }

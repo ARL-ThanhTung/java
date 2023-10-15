@@ -1,12 +1,16 @@
 package com.shop.ShopCongNghe.service.user.impl;
 
 
+import com.shop.ShopCongNghe.dto.role.RoleResponse;
+import com.shop.ShopCongNghe.dto.user.UserRequest;
+import com.shop.ShopCongNghe.dto.user.UserResponse;
 import com.shop.ShopCongNghe.entity.user.UserEntity;
 import com.shop.ShopCongNghe.repository.user.UserRepository;
 import com.shop.ShopCongNghe.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.management.relation.Role;
 import java.util.List;
 
 @Service
@@ -15,12 +19,54 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public UserEntity saveUser(UserEntity user) {
-        return userRepository.save(user);
+    public Boolean saveUser(UserRequest user) {
+        try {
+            UserEntity userEntity = new UserEntity();
+            userEntity.setId(user.getId());
+            userEntity.setAddress(user.getAddress());
+            userEntity.setEmail(user.getEmail());
+            userEntity.setFull_name(user.getFull_name());
+            userEntity.setPhone_number(user.getPhone());
+            userEntity.setPassword(user.getPassword());
+            userRepository.save(userEntity);
+            return true;
+        }catch(Exception e){
+            System.out.println("Error API create user");
+            System.out.println(e);
+            return false;
+        }
     }
 
+//    @Override
+//    public List<UserResponse> showAllUser() {
+//        try {
+//
+//        }catch(Exception e){
+//            System.out.println("Error get list user");
+//            System.out.println(e);
+//        }
+//        return userRepository.findAll();
+//    }
+
     @Override
-    public List<UserEntity> showAllUser() {
-        return userRepository.findAll();
+    public UserResponse showUser(Long id) {
+        try {
+            UserEntity user = userRepository.findById(id).get();
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(user.getId());
+            userResponse.setAddress(user.getAddress());
+            userResponse.setEmail(user.getEmail());
+            userResponse.setFull_name(user.getFull_name());
+            RoleResponse roleResponse = new RoleResponse();
+            roleResponse.setId(user.getRole().getId());
+            roleResponse.setName(user.getRole().getName());
+            userResponse.setRole(roleResponse);
+            return userResponse;
+        }catch(Exception e){
+            System.out.println("Error get list user");
+            System.out.println(e);
+            return null;
+        }
+
     }
 }

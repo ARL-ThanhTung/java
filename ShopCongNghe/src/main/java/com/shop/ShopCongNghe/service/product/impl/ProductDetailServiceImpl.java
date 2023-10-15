@@ -72,8 +72,11 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
             RomEntity check_rom = romService.getRom(productDetailRequest.getRom_id());
             OSEntity check_os = osService.getOS(productDetailRequest.getOs_id());
-            ColorEntity check_color = colorService.getColor(productDetailRequest.getColor_id());
-            //ImageEntity check_image = imageService.getImage(productDetailRequest.getImage_id());
+            List<ColorEntity> colorList = new ArrayList<>();
+            for( int j = 0 ; j < productDetailRequest.getColor_id().size() ; j++ ){
+                ColorEntity check_color = colorService.getColorEntity( productDetailRequest.getColor_id().get(j) );
+                colorList.add(check_color);
+            }
             CardEntity check_card = cardService.getCard(productDetailRequest.getCard_id());
             if ( check_product != null ){
                 productDetail.setProduct( check_product );
@@ -87,16 +90,15 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             if ( check_os != null ){
                 productDetail.setOs( check_os );
             }
-            if ( check_color != null ){
-                productDetail.setColor( check_color );
+            if ( colorList != null ){
+                productDetail.setColor( colorList );
             }
-//            if ( check_image != null ){
-//                productDetail.setImage( check_image );
-//            }
+
             if ( check_card != null ){
                 productDetail.setCard( check_card );
             }
             ProductDetailEntity check_create = productDetailRepository.save(productDetail);
+
             if (check_create == null){
                 return false;
             }
@@ -143,9 +145,14 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 productDetail.setOs(osResponse);
 
                 // color
-                ColorResponse colorResponse = new ColorResponse();
-                colorResponse.setId(productDetailEntities.get(i).getColor().getId());
-                colorResponse.setName(productDetailEntities.get(i).getColor().getName());
+                List<ColorResponse> colorResponse = new ArrayList<>();
+                for( int j = 0 ; j < productDetailEntities.get(i).getColor().size() ; j++ ){
+                    ColorResponse c = new ColorResponse();
+                    c.setId(productDetailEntities.get(i).getColor().get(j).getId());
+                    c.setName(productDetailEntities.get(i).getColor().get(j).getName());
+                    c.setImage_link(productDetailEntities.get(i).getColor().get(j).getImage_link());
+                    colorResponse.add(c);
+                }
                 productDetail.setColor(colorResponse);
                 // product
                 ProductResponse product = new ProductResponse();
@@ -222,9 +229,14 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setOs(osResponse);
 
             // color
-            ColorResponse colorResponse = new ColorResponse();
-            colorResponse.setId(productDetailEntities.getColor().getId());
-            colorResponse.setName(productDetailEntities.getColor().getName());
+            List<ColorResponse> colorResponse = new ArrayList<>();
+            for( int j = 0 ; j < productDetailEntities.getColor().size() ; j++ ){
+                ColorResponse c = new ColorResponse();
+                c.setId(productDetailEntities.getColor().get(j).getId());
+                c.setName(productDetailEntities.getColor().get(j).getName());
+                c.setImage_link(productDetailEntities.getColor().get(j).getImage_link());
+                colorResponse.add(c);
+            }
             productDetail.setColor(colorResponse);
             // product
             ProductResponse product = new ProductResponse();

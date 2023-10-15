@@ -1,6 +1,9 @@
 package com.shop.ShopCongNghe.dto.productdetail;
 
+import com.shop.ShopCongNghe.dto.detail.color.ColorResponse;
 import com.shop.ShopCongNghe.entity.product.ProductDetailEntity;
+
+import java.util.List;
 
 public class ProductDetailRequest {
     //private ProductDetailEntity productDetailEntity;
@@ -19,15 +22,15 @@ public class ProductDetailRequest {
 
     private Long quantity_remain;
 
-
-
     private Long product_id;
     private Long ram_id;
     private Long rom_id;
     private Long os_id;
-    private Long color_id;
+    //private Long color_id;
     //private Long image_id;
     private Long card_id;
+
+    private List<Long> color_id;
 
 //    public Long getId() {
 //        return id;
@@ -37,6 +40,15 @@ public class ProductDetailRequest {
 //        this.id = id;
 //    }
 
+
+
+    public List<Long> getColor_id() {
+        return color_id;
+    }
+
+    public void setColor_id(List<Long> color_id) {
+        this.color_id = color_id;
+    }
 
     public String getChip() {
         return chip;
@@ -158,13 +170,13 @@ public class ProductDetailRequest {
         this.os_id = os_id;
     }
 
-    public Long getColor_id() {
-        return color_id;
-    }
-
-    public void setColor_id(Long color_id) {
-        this.color_id = color_id;
-    }
+//    public Long getColor_id() {
+//        return color_id;
+//    }
+//
+//    public void setColor_id(Long color_id) {
+//        this.color_id = color_id;
+//    }
 
 //    public Long getImage_id() {
 //        return image_id;

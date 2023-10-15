@@ -59,6 +59,43 @@ public class ProductDetailEntity {
     @Column( nullable = true )
     private String chip;
 
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private ProductEntity product;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_id")
+    private CardEntity card;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "os_id")
+    private OSEntity os;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ram_id")
+    private RamEntity ram;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rom_id")
+    private RomEntity rom;
+
+    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<OrderDetailEntity> order_detail = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product_details", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ColorEntity> color = new ArrayList<>();
+
+    public List<ColorEntity> getColor() {
+        return color;
+    }
+
+    public void setColor(List<ColorEntity> color) {
+        this.color = color;
+    }
+
     public String getScreen() {
         return screen;
     }
@@ -139,40 +176,6 @@ public class ProductDetailEntity {
         this.battery = battery;
     }
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
-    private ProductEntity product;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "card_id")
-    private CardEntity card;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "color_id")
-    private ColorEntity color;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "image_id")
-//    private ImageEntity image;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "os_id")
-    private OSEntity os;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ram_id")
-    private RamEntity ram;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rom_id")
-    private RomEntity rom;
-
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OrderDetailEntity> order_detail = new ArrayList<>();
-
     public List<OrderDetailEntity> getOrder_detail() {
         return order_detail;
     }
@@ -205,21 +208,7 @@ public class ProductDetailEntity {
         this.card = card;
     }
 
-    public ColorEntity getColor() {
-        return color;
-    }
 
-    public void setColor(ColorEntity color) {
-        this.color = color;
-    }
-
-//    public ImageEntity getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(ImageEntity image) {
-//        this.image = image;
-//    }
 
     public OSEntity getOs() {
         return os;

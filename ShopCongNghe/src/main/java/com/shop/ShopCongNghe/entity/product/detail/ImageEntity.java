@@ -31,6 +31,10 @@ public class ImageEntity {
     @Column( nullable = true )
     private String name;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "color_id")
+//    private ColorEntity color;
+
 
 
     public Long getId() {
@@ -47,6 +51,6 @@ public class ImageEntity {
 
 
 
-    @OneToMany(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ProductDetailEntity> productDetail = new ArrayList<>();
+//    @OneToMany(mappedBy = "image", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<ProductDetailEntity> productDetail = new ArrayList<>();
 }

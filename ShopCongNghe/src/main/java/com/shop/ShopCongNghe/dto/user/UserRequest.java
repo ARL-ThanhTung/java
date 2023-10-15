@@ -6,14 +6,20 @@ public class UserRequest {
     private String password;
     private String full_name;
     private String address;
+    private String phone;
 
     private String email;
 
     private Long role_id;
 
 
+    public String getPhone() {
+        return phone;
+    }
 
-
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public Long getId() {
         return id;

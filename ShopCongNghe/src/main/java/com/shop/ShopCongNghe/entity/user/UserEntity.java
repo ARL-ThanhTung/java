@@ -32,6 +32,9 @@ public class UserEntity {
     private String phone_number;
 
     @Column( nullable = true )
+    private String password;
+
+    @Column( nullable = true )
     private String address;
 
     @Column( nullable = true )
@@ -44,6 +47,30 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderEntity> order = new ArrayList<>();
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public RoleEntity getRole() {
+        return role;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
+    }
+
+    public List<OrderEntity> getOrder() {
+        return order;
+    }
+
+    public void setOrder(List<OrderEntity> order) {
+        this.order = order;
+    }
 
     public Long getId() {
         return id;
