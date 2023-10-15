@@ -64,6 +64,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setDescription(productDetailRequest.getDescription());
             productDetail.setVideo(productDetailRequest.getVideo() );
             productDetail.setImage(productDetailRequest.getImage());
+            productDetail.setQuantity_remain(productDetailRequest.getQuantity_remain());
 
             ProductEntity check_product = productService.getProduct(productDetailRequest.getProduct_id());
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
@@ -171,6 +172,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 productDetail.setCamera(productDetailEntities.get(i).getCamera());
                 productDetail.setCameraSelf(productDetailEntities.get(i).getCameraSelf());
                 productDetail.setBattery(productDetailEntities.get(i).getBattery());
+                productDetail.setQuantity_remain( productDetailEntities.get(i).getQuantity_remain() );
                 productDetailResponses.add(productDetail);
 
             }
@@ -248,6 +250,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setCamera(productDetailEntities.getCamera());
             productDetail.setCameraSelf(productDetailEntities.getCameraSelf());
             productDetail.setBattery(productDetailEntities.getBattery());
+            productDetail.setQuantity_remain( productDetailEntities.getQuantity_remain() );
 
             if (productDetail == null){
                 return null;

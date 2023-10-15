@@ -46,6 +46,17 @@ public class ProductDetailEntity {
     @Column( nullable = true )
     private String battery;
 
+    @Column( nullable = true )
+    private Long quantity_remain;
+
+    public Long getQuantity_remain() {
+        return quantity_remain;
+    }
+
+    public void setQuantity_remain(Long quantity_remain) {
+        this.quantity_remain = quantity_remain;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

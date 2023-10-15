@@ -14,7 +14,7 @@ public class ProductDetailRequest {
     private String cameraSelf;
     private String battery;
 
-
+    private Long quantity_remain;
 
 
 
@@ -34,6 +34,14 @@ public class ProductDetailRequest {
 //        this.id = id;
 //    }
 
+
+    public Long getQuantity_remain() {
+        return quantity_remain;
+    }
+
+    public void setQuantity_remain(Long quantity_remain) {
+        this.quantity_remain = quantity_remain;
+    }
 
     public String getImage() {
         return image;

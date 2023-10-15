@@ -14,8 +14,7 @@ public class ProductDetailResponse {
 
     private Long id;
     private String description;
-
-
+    private Long quantity_remain;
     private String video;
 
     private String image;
@@ -24,6 +23,14 @@ public class ProductDetailResponse {
     private String cameraSelf;
     private String battery;
 
+
+    public Long getQuantity_remain() {
+        return quantity_remain;
+    }
+
+    public void setQuantity_remain(Long quantity_remain) {
+        this.quantity_remain = quantity_remain;
+    }
 
     public String getVideo() {
         return video;
