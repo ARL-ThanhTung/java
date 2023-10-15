@@ -8,7 +8,7 @@ import com.shop.ShopCongNghe.dto.productdetail.ProductDetailResponse;
 import java.util.List;
 
 public interface ProductDetailService {
-    ProductDetailEntity saveProductDetail(ProductDetailRequest productDetailRequest );
+    Boolean saveProductDetail(ProductDetailRequest productDetailRequest );
     List<ProductDetailResponse> showAllProductDetail();
     ProductDetailResponse showProductDetail(Long id);
 }

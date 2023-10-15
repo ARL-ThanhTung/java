@@ -1,5 +1,6 @@
 package com.shop.ShopCongNghe.entity.product.detail;
 
+import com.shop.ShopCongNghe.entity.product.ProductDetailEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -41,9 +42,8 @@ public class ColorEntity {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_detail_id")
-    private ProductEntity product_detail;
 
+    @OneToMany(mappedBy = "color", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductDetailEntity> productDetail = new ArrayList<>();
 
 }

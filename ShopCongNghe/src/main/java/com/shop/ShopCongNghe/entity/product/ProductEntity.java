@@ -82,11 +82,11 @@ public class ProductEntity {
     }
 
     public List<ProductDetailEntity> getProductDetails() {
-        return productDetails;
+        return productDetail;
     }
 
     public void setProductDetails(List<ProductDetailEntity> productDetails) {
-        this.productDetails = productDetails;
+        this.productDetail = productDetails;
     }
 
 
@@ -108,7 +108,7 @@ public class ProductEntity {
 
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ProductDetailEntity> productDetails = new ArrayList<>();
+    private List<ProductDetailEntity> productDetail = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "branch_id")

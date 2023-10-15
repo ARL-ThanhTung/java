@@ -53,9 +53,16 @@ public class ProductDetailServiceImpl implements ProductDetailService {
     private CardService cardService;
 
     @Override
-    public ProductDetailEntity saveProductDetail(ProductDetailRequest productDetailRequest) {
+    public Boolean saveProductDetail(ProductDetailRequest productDetailRequest) {
         try{
-            ProductDetailEntity productDetail = productDetailRequest.getProductDetailEntity();
+            ProductDetailEntity productDetail = new ProductDetailEntity();
+            //productDetail.setId(productDetailRequest.getId());
+            productDetail.setPrice(productDetailRequest.getPrice());
+            productDetail.setCamera(productDetailRequest.getCamera());
+            productDetail.setCameraSelf(productDetailRequest.getCameraSelf());
+            productDetail.setBattery(productDetailRequest.getBattery());
+            productDetail.setDescription(productDetailRequest.getDescription());
+
             ProductEntity check_product = productService.getProduct(productDetailRequest.getProduct_id());
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
             RomEntity check_rom = romService.getRom(productDetailRequest.getRom_id());
@@ -64,44 +71,36 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             ImageEntity check_image = imageService.getImage(productDetailRequest.getImage_id());
             CardEntity check_card = cardService.getCard(productDetailRequest.getCard_id());
             if ( check_product != null ){
-                productDetail.checkProduct( check_product );
+                productDetail.setProduct( check_product );
             }
             if ( check_ram != null ){
-                List<RamEntity> rams = new ArrayList<>();
-                rams.add(check_ram);
-                productDetail.checkRam( rams );
+                productDetail.setRam( check_ram );
             }
             if ( check_rom != null ){
-                List<RomEntity> roms = new ArrayList<>();
-                roms.add(check_rom);
-                productDetail.checkRom( roms );
+                productDetail.setRom( check_rom );
             }
             if ( check_os != null ){
-                List<OSEntity> oss = new ArrayList<>();
-                oss.add(check_os);
-                productDetail.checkOS( oss );
+                productDetail.setOs( check_os );
             }
             if ( check_color != null ){
-                List<ColorEntity> colors = new ArrayList<>();
-                colors.add(check_color);
-                productDetail.checkColor( colors );
+                productDetail.setColor( check_color );
             }
             if ( check_image != null ){
-                List<ImageEntity> images = new ArrayList<>();
-                images.add(check_image);
-                productDetail.checkImage( images );
+                productDetail.setImage( check_image );
             }
             if ( check_card != null ){
-                List<CardEntity> cards = new ArrayList<>();
-                cards.add(check_card);
-                productDetail.checkCard( cards );
+                productDetail.setCard( check_card );
             }
-            return productDetailRepository.save(productDetail);
+            ProductDetailEntity check_create = productDetailRepository.save(productDetail);
+            if (check_create == null){
+                return false;
+            }
+            return true;
         }
         catch (Exception e) {
             System.out.println(e);
         }
-        return null;
+        return false;
     }
 
     @Override
@@ -113,53 +112,36 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             for( int i = 0 ; i < productDetailEntities.size() ; i++ ){
                 ProductDetailResponse productDetail = new ProductDetailResponse();
                 // ram
-                List<RamResponse> ram = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getRams().size() ; j++){
-                    RamResponse ramResponse = new RamResponse();
-                    ramResponse.setId(productDetailEntities.get(i).getRams().get(j).getId());
-                    ramResponse.setName(productDetailEntities.get(i).getRams().get(j).getName());
-                    ram.add(ramResponse);
-                }
+                RamResponse ramResponse = new RamResponse();
+                ramResponse.setId(productDetailEntities.get(i).getRam().getId());
+                ramResponse.setName(productDetailEntities.get(i).getRam().getName());
+                productDetail.setRam(ramResponse);
                 // rom
-                List<RomResponse> rom = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getRoms().size() ; j++){
-                    RomResponse romResponse = new RomResponse();
-                    romResponse.setId(productDetailEntities.get(i).getRoms().get(j).getId());
-                    romResponse.setName(productDetailEntities.get(i).getRoms().get(j).getName());
-                    rom.add(romResponse);
-                }
+                RomResponse romResponse = new RomResponse();
+                romResponse.setId(productDetailEntities.get(i).getRom().getId());
+                romResponse.setName(productDetailEntities.get(i).getRom().getName());
+                productDetail.setRom(romResponse);
                 // image
-                List<ImageResponse> image = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getImages().size() ; j++){
-                    ImageResponse imageResponse = new ImageResponse();
-                    imageResponse.setId(productDetailEntities.get(i).getImages().get(j).getId());
-                    imageResponse.setName(productDetailEntities.get(i).getImages().get(j).getName());
-                    image.add(imageResponse);
-                }
+                ImageResponse imageResponse = new ImageResponse();
+                imageResponse.setId(productDetailEntities.get(i).getImage().getId());
+                imageResponse.setName(productDetailEntities.get(i).getImage().getName());
+                productDetail.setImage(imageResponse);
                 // card
-                List<CardResponse> card = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getCards().size() ; j++){
-                    CardResponse cardResponse = new CardResponse();
-                    cardResponse.setId(productDetailEntities.get(i).getCards().get(j).getId());
-                    cardResponse.setName(productDetailEntities.get(i).getCards().get(j).getName());
-                    card.add(cardResponse);
-                }
+                CardResponse cardResponse = new CardResponse();
+                cardResponse.setId(productDetailEntities.get(i).getCard().getId());
+                cardResponse.setName(productDetailEntities.get(i).getCard().getName());
+                productDetail.setCard(cardResponse);
                 // os
-                List<OsResponse> os = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getOss().size() ; j++){
-                    OsResponse osResponse = new OsResponse();
-                    osResponse.setId(productDetailEntities.get(i).getOss().get(j).getId());
-                    osResponse.setName(productDetailEntities.get(i).getOss().get(j).getName());
-                    os.add(osResponse);
-                }
+                OsResponse osResponse = new OsResponse();
+                osResponse.setId(productDetailEntities.get(i).getOs().getId());
+                osResponse.setName(productDetailEntities.get(i).getOs().getName());
+                productDetail.setOs(osResponse);
+
                 // color
-                List<ColorResponse> color = new ArrayList<>();
-                for(int j = 0 ; j < productDetailEntities.get(i).getColors().size() ; j++){
-                    ColorResponse colorResponse = new ColorResponse();
-                    colorResponse.setId(productDetailEntities.get(i).getColors().get(j).getId());
-                    colorResponse.setName(productDetailEntities.get(i).getColors().get(j).getName());
-                    color.add(colorResponse);
-                }
+                ColorResponse colorResponse = new ColorResponse();
+                colorResponse.setId(productDetailEntities.get(i).getColor().getId());
+                colorResponse.setName(productDetailEntities.get(i).getColor().getName());
+                productDetail.setColor(colorResponse);
                 // product
                 ProductResponse product = new ProductResponse();
                 product.setId(productDetailEntities.get(i).getProduct().getId());
@@ -175,14 +157,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 categoryResponse.setId(productDetailEntities.get(i).getProduct().getCategory().getId());
                 categoryResponse.setName(productDetailEntities.get(i).getProduct().getCategory().getName());
                 product.setCategory(categoryResponse);
-
-                productDetail.setColor(color);
-                productDetail.setImage(image);
                 productDetail.setProduct(product);
-                productDetail.setCard(card);
-                productDetail.setOs(os);
-                productDetail.setRom(rom);
-                productDetail.setRam(ram);
+
                 productDetail.setId(productDetailEntities.get(i).getId());
                 productDetail.setDescription(productDetailEntities.get(i).getDescription());
                 productDetail.setPrice(productDetailEntities.get(i).getPrice());
@@ -208,53 +184,36 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             }
             ProductDetailResponse productDetail = new ProductDetailResponse();
             // ram
-            List<RamResponse> ram = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getRams().size() ; j++){
-                RamResponse ramResponse = new RamResponse();
-                ramResponse.setId(productDetailEntities.getRams().get(j).getId());
-                ramResponse.setName(productDetailEntities.getRams().get(j).getName());
-                ram.add(ramResponse);
-            }
+            RamResponse ramResponse = new RamResponse();
+            ramResponse.setId(productDetailEntities.getRam().getId());
+            ramResponse.setName(productDetailEntities.getRam().getName());
+            productDetail.setRam(ramResponse);
             // rom
-            List<RomResponse> rom = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getRoms().size() ; j++){
-                RomResponse romResponse = new RomResponse();
-                romResponse.setId(productDetailEntities.getRoms().get(j).getId());
-                romResponse.setName(productDetailEntities.getRoms().get(j).getName());
-                rom.add(romResponse);
-            }
+            RomResponse romResponse = new RomResponse();
+            romResponse.setId(productDetailEntities.getRom().getId());
+            romResponse.setName(productDetailEntities.getRom().getName());
+            productDetail.setRom(romResponse);
             // image
-            List<ImageResponse> image = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getImages().size() ; j++){
-                ImageResponse imageResponse = new ImageResponse();
-                imageResponse.setId(productDetailEntities.getImages().get(j).getId());
-                imageResponse.setName(productDetailEntities.getImages().get(j).getName());
-                image.add(imageResponse);
-            }
+            ImageResponse imageResponse = new ImageResponse();
+            imageResponse.setId(productDetailEntities.getImage().getId());
+            imageResponse.setName(productDetailEntities.getImage().getName());
+            productDetail.setImage(imageResponse);
             // card
-            List<CardResponse> card = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getCards().size() ; j++){
-                CardResponse cardResponse = new CardResponse();
-                cardResponse.setId(productDetailEntities.getCards().get(j).getId());
-                cardResponse.setName(productDetailEntities.getCards().get(j).getName());
-                card.add(cardResponse);
-            }
+            CardResponse cardResponse = new CardResponse();
+            cardResponse.setId(productDetailEntities.getCard().getId());
+            cardResponse.setName(productDetailEntities.getCard().getName());
+            productDetail.setCard(cardResponse);
             // os
-            List<OsResponse> os = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getOss().size() ; j++){
-                OsResponse osResponse = new OsResponse();
-                osResponse.setId(productDetailEntities.getOss().get(j).getId());
-                osResponse.setName(productDetailEntities.getOss().get(j).getName());
-                os.add(osResponse);
-            }
+            OsResponse osResponse = new OsResponse();
+            osResponse.setId(productDetailEntities.getOs().getId());
+            osResponse.setName(productDetailEntities.getOs().getName());
+            productDetail.setOs(osResponse);
+
             // color
-            List<ColorResponse> color = new ArrayList<>();
-            for(int j = 0 ; j < productDetailEntities.getColors().size() ; j++){
-                ColorResponse colorResponse = new ColorResponse();
-                colorResponse.setId(productDetailEntities.getColors().get(j).getId());
-                colorResponse.setName(productDetailEntities.getColors().get(j).getName());
-                color.add(colorResponse);
-            }
+            ColorResponse colorResponse = new ColorResponse();
+            colorResponse.setId(productDetailEntities.getColor().getId());
+            colorResponse.setName(productDetailEntities.getColor().getName());
+            productDetail.setColor(colorResponse);
             // product
             ProductResponse product = new ProductResponse();
             product.setId(productDetailEntities.getProduct().getId());
@@ -270,20 +229,15 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             categoryResponse.setId(productDetailEntities.getProduct().getCategory().getId());
             categoryResponse.setName(productDetailEntities.getProduct().getCategory().getName());
             product.setCategory(categoryResponse);
-
-            productDetail.setColor(color);
-            productDetail.setImage(image);
             productDetail.setProduct(product);
-            productDetail.setCard(card);
-            productDetail.setOs(os);
-            productDetail.setRom(rom);
-            productDetail.setRam(ram);
+
             productDetail.setId(productDetailEntities.getId());
             productDetail.setDescription(productDetailEntities.getDescription());
             productDetail.setPrice(productDetailEntities.getPrice());
             productDetail.setCamera(productDetailEntities.getCamera());
             productDetail.setCameraSelf(productDetailEntities.getCameraSelf());
             productDetail.setBattery(productDetailEntities.getBattery());
+
             if (productDetail == null){
                 return null;
             }

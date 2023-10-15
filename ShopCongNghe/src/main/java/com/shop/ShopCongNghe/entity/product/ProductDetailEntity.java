@@ -40,7 +40,9 @@ public class ProductDetailEntity {
     @Column( nullable = true )
     private String battery;
 
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Long getId() {
         return id;
@@ -87,78 +89,90 @@ public class ProductDetailEntity {
     }
 
 
-    public ProductEntity getProduct() {
-        return product;
-    }
-
-    public List<CardEntity> getCards() {
-        return cards;
-    }
-
-    public List<ColorEntity> getColors() {
-        return colors;
-    }
-
-    public List<ImageEntity> getImages() {
-        return images;
-    }
-
-    public List<OSEntity> getOss() {
-        return oss;
-    }
-
-    public List<RamEntity> getRams() {
-        return rams;
-    }
-
-    public List<RomEntity> getRoms() {
-        return roms;
-    }
-
-    public void checkProduct(ProductEntity product){
-        this.product = product;
-    }
-    public void checkRam(List<RamEntity> ramEntity){
-        this.rams = ramEntity;
-    }
-    public void checkRom(List<RomEntity> romEntity){
-        this.roms = romEntity;
-    }
-    public void checkOS(List<OSEntity> osEntity){
-        this.oss = osEntity;
-    }
-    public void checkColor(List<ColorEntity> colors){
-        this.colors = colors;
-    }
-    public void checkImage(List<ImageEntity> images){
-        this.images = images;
-    }
-    public void checkCard(List<CardEntity> cards){
-        this.cards = cards;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<CardEntity> cards = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "card_id")
+    private CardEntity card;
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ColorEntity> colors = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id")
+    private ColorEntity color;
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ImageEntity> images = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "image_id")
+    private ImageEntity image;
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<OSEntity> oss = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "os_id")
+    private OSEntity os;
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RamEntity> rams = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ram_id")
+    private RamEntity ram;
 
-    @OneToMany(mappedBy = "product_detail", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RomEntity> roms = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rom_id")
+    private RomEntity rom;
 
 
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
+    }
+
+    public CardEntity getCard() {
+        return card;
+    }
+
+    public void setCard(CardEntity card) {
+        this.card = card;
+    }
+
+    public ColorEntity getColor() {
+        return color;
+    }
+
+    public void setColor(ColorEntity color) {
+        this.color = color;
+    }
+
+    public ImageEntity getImage() {
+        return image;
+    }
+
+    public void setImage(ImageEntity image) {
+        this.image = image;
+    }
+
+    public OSEntity getOs() {
+        return os;
+    }
+
+    public void setOs(OSEntity os) {
+        this.os = os;
+    }
+
+    public RamEntity getRam() {
+        return ram;
+    }
+
+    public void setRam(RamEntity ram) {
+        this.ram = ram;
+    }
+
+    public RomEntity getRom() {
+        return rom;
+    }
+
+    public void setRom(RomEntity rom) {
+        this.rom = rom;
+    }
 }

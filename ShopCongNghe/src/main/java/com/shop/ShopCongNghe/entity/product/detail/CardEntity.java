@@ -1,6 +1,7 @@
 package com.shop.ShopCongNghe.entity.product.detail;
 
 
+import com.shop.ShopCongNghe.entity.product.ProductDetailEntity;
 import com.shop.ShopCongNghe.entity.product.ProductEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,9 +43,10 @@ public class CardEntity {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_detail_id")
-    private ProductEntity product_detail;
+
+
+    @OneToMany(mappedBy = "card", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ProductDetailEntity> productDetail = new ArrayList<>();
 
 
 }

@@ -16,7 +16,7 @@ public class ProductDetailAPI {
     private ProductDetailService productDetailService;
 
     @PostMapping( "/productdetails" )
-    public ProductDetailEntity addProductDetail(@RequestBody ProductDetailRequest productDetailRequest){
+    public Boolean addProductDetail(@RequestBody ProductDetailRequest productDetailRequest){
         try {
             return productDetailService.saveProductDetail(productDetailRequest );
         } catch (Exception e){

@@ -3,7 +3,18 @@ package com.shop.ShopCongNghe.dto.productdetail;
 import com.shop.ShopCongNghe.entity.product.ProductDetailEntity;
 
 public class ProductDetailRequest {
-    private ProductDetailEntity productDetailEntity;
+    //private ProductDetailEntity productDetailEntity;
+    //private Long id;
+    private String description;
+    private float price;
+    private String camera;
+    private String cameraSelf;
+    private String battery;
+
+
+
+
+
     private Long product_id;
     private Long ram_id;
     private Long rom_id;
@@ -12,14 +23,61 @@ public class ProductDetailRequest {
     private Long image_id;
     private Long card_id;
 
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
-    public ProductDetailEntity getProductDetailEntity() {
-        return productDetailEntity;
+    public String getDescription() {
+        return description;
     }
 
-    public void setProductDetailEntity(ProductDetailEntity productDetailEntity) {
-        this.productDetailEntity = productDetailEntity;
+    public void setDescription(String description) {
+        this.description = description;
     }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getCamera() {
+        return camera;
+    }
+
+    public void setCamera(String camera) {
+        this.camera = camera;
+    }
+
+    public String getCameraSelf() {
+        return cameraSelf;
+    }
+
+    public void setCameraSelf(String cameraSelf) {
+        this.cameraSelf = cameraSelf;
+    }
+
+    public String getBattery() {
+        return battery;
+    }
+
+    public void setBattery(String battery) {
+        this.battery = battery;
+    }
+
+    //    public ProductDetailEntity getProductDetailEntity() {
+//        return productDetailEntity;
+//    }
+//
+//    public void setProductDetailEntity(ProductDetailEntity productDetailEntity) {
+//        this.productDetailEntity = productDetailEntity;
+//    }
 
     public Long getProduct_id() {
         return product_id;

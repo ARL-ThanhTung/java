@@ -67,61 +67,61 @@ public class ProductDetailResponse {
         this.battery = battery;
     }
 
-    private List<RamResponse> ram;
-    private List<RomResponse> rom;
-    private List<ImageResponse> image;
-    private List<OsResponse> os;
-    private List<ColorResponse> color;
-    private List<CardResponse> card;
+    private RamResponse ram;
+    private RomResponse rom;
+    private ImageResponse image;
+    private OsResponse os;
+    private ColorResponse color;
+    private CardResponse card;
 
     private ProductResponse product ;
 
 
-    public List<RamResponse> getRam() {
+    public RamResponse getRam() {
         return ram;
     }
 
-    public void setRam(List<RamResponse> ram) {
+    public void setRam(RamResponse ram) {
         this.ram = ram;
     }
 
-    public List<RomResponse> getRom() {
+    public RomResponse getRom() {
         return rom;
     }
 
-    public void setRom(List<RomResponse> rom) {
+    public void setRom(RomResponse rom) {
         this.rom = rom;
     }
 
-    public List<ImageResponse> getImage() {
+    public ImageResponse getImage() {
         return image;
     }
 
-    public void setImage(List<ImageResponse> image) {
+    public void setImage(ImageResponse image) {
         this.image = image;
     }
 
-    public List<OsResponse> getOs() {
+    public OsResponse getOs() {
         return os;
     }
 
-    public void setOs(List<OsResponse> os) {
+    public void setOs(OsResponse os) {
         this.os = os;
     }
 
-    public List<ColorResponse> getColor() {
+    public ColorResponse getColor() {
         return color;
     }
 
-    public void setColor(List<ColorResponse> color) {
+    public void setColor(ColorResponse color) {
         this.color = color;
     }
 
-    public List<CardResponse> getCard() {
+    public CardResponse getCard() {
         return card;
     }
 
-    public void setCard(List<CardResponse> card) {
+    public void setCard(CardResponse card) {
         this.card = card;
     }
 
