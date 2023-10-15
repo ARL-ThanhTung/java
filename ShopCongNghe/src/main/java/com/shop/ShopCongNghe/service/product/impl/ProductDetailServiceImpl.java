@@ -65,6 +65,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setVideo(productDetailRequest.getVideo() );
             productDetail.setImage(productDetailRequest.getImage());
             productDetail.setQuantity_remain(productDetailRequest.getQuantity_remain());
+            productDetail.setChip(productDetailRequest.getChip());
+            productDetail.setScreen(productDetailRequest.getScreen());
 
             ProductEntity check_product = productService.getProduct(productDetailRequest.getProduct_id());
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
@@ -152,8 +154,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 product.setName(productDetailEntities.get(i).getProduct().getName());
                 product.setImage(productDetailEntities.get(i).getProduct().getImage());
                 product.setDescription(productDetailEntities.get(i).getProduct().getDescription());
-                product.setChip(productDetailEntities.get(i).getProduct().getChip());
-                product.setScreen(productDetailEntities.get(i).getProduct().getScreen());
+                product.setOrigin(productDetailEntities.get(i).getProduct().getOrigin());
+
                 BranchResponse branchResponse = new BranchResponse();
                 branchResponse.setId(productDetailEntities.get(i).getProduct().getBranch().getId());
                 branchResponse.setName(productDetailEntities.get(i).getProduct().getBranch().getName());
@@ -173,6 +175,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 productDetail.setCameraSelf(productDetailEntities.get(i).getCameraSelf());
                 productDetail.setBattery(productDetailEntities.get(i).getBattery());
                 productDetail.setQuantity_remain( productDetailEntities.get(i).getQuantity_remain() );
+                productDetail.setChip(productDetailEntities.get(i).getChip());
+                productDetail.setScreen(productDetailEntities.get(i).getScreen());
                 productDetailResponses.add(productDetail);
 
             }
@@ -229,8 +233,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             product.setName(productDetailEntities.getProduct().getName());
             product.setImage(productDetailEntities.getProduct().getImage());
             product.setDescription(productDetailEntities.getProduct().getDescription());
-            product.setChip(productDetailEntities.getProduct().getChip());
-            product.setScreen(productDetailEntities.getProduct().getScreen());
+            product.setOrigin(productDetailEntities.getProduct().getOrigin());
 
             BranchResponse branchResponse = new BranchResponse();
             branchResponse.setId(productDetailEntities.getProduct().getBranch().getId());
@@ -251,6 +254,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setCameraSelf(productDetailEntities.getCameraSelf());
             productDetail.setBattery(productDetailEntities.getBattery());
             productDetail.setQuantity_remain( productDetailEntities.getQuantity_remain() );
+            productDetail.setChip(productDetailEntities.getChip());
+            productDetail.setScreen(productDetailEntities.getScreen());
 
             if (productDetail == null){
                 return null;

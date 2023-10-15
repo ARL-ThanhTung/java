@@ -8,9 +8,9 @@ public class ProductRequest {
 
     private String name;
 
-    private String screen;
+    private String origin;
 
-    private String chip;
+
 
     private String image;
 
@@ -20,21 +20,12 @@ public class ProductRequest {
 
     private Long branch_id ;
 
-
-    public String getScreen() {
-        return screen;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setScreen(String screen) {
-        this.screen = screen;
-    }
-
-    public String getChip() {
-        return chip;
-    }
-
-    public void setChip(String chip) {
-        this.chip = chip;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getTitle() {

@@ -23,6 +23,24 @@ public class ProductDetailResponse {
     private String cameraSelf;
     private String battery;
 
+    private String chip;
+    private String screen;
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
 
     public Long getQuantity_remain() {
         return quantity_remain;

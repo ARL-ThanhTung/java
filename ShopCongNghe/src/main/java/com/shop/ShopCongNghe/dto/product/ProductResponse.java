@@ -2,6 +2,9 @@ package com.shop.ShopCongNghe.dto.product;
 
 import com.shop.ShopCongNghe.dto.branch.BranchResponse;
 import com.shop.ShopCongNghe.dto.category.CategoryResponse;
+import com.shop.ShopCongNghe.dto.productdetail.ProductDetailResponse;
+
+import java.util.List;
 
 public class ProductResponse {
 
@@ -9,9 +12,8 @@ public class ProductResponse {
     
     private String title;
 
-    private String screen;
+    private String origin;
 
-    private String chip;
 
     private String name;
 
@@ -23,21 +25,22 @@ public class ProductResponse {
 
     private CategoryResponse category;
 
+    private List<ProductDetailResponse> product_detail;
 
-    public String getScreen() {
-        return screen;
+    public List<ProductDetailResponse> getProduct_detail() {
+        return product_detail;
     }
 
-    public void setScreen(String screen) {
-        this.screen = screen;
+    public void setProduct_detail(List<ProductDetailResponse> product_detail) {
+        this.product_detail = product_detail;
     }
 
-    public String getChip() {
-        return chip;
+    public String getOrigin() {
+        return origin;
     }
 
-    public void setChip(String chip) {
-        this.chip = chip;
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 
     public String getTitle() {

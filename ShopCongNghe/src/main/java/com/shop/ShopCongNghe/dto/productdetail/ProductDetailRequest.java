@@ -8,6 +8,9 @@ public class ProductDetailRequest {
     private String description;
     private String video;
 
+    private String chip;
+    private String screen;
+
     private String image;
     private float price;
     private String camera;
@@ -34,6 +37,22 @@ public class ProductDetailRequest {
 //        this.id = id;
 //    }
 
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
 
     public Long getQuantity_remain() {
         return quantity_remain;

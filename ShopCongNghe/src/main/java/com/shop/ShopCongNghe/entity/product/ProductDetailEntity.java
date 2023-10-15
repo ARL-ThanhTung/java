@@ -49,6 +49,28 @@ public class ProductDetailEntity {
     @Column( nullable = true )
     private Long quantity_remain;
 
+    @Column( nullable = true )
+    private String screen;
+
+    @Column( nullable = true )
+    private String chip;
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
+
+    public String getChip() {
+        return chip;
+    }
+
+    public void setChip(String chip) {
+        this.chip = chip;
+    }
+
     public Long getQuantity_remain() {
         return quantity_remain;
     }

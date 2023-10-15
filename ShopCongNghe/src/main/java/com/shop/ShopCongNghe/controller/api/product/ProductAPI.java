@@ -31,10 +31,14 @@ public class ProductAPI {
     }
 
     @GetMapping("/products")
-    public List<ProductResponse> showCustomer(){
+    public List<ProductResponse> showProductAll(){
         return productService.showAllProduct();
     }
 
+    @GetMapping("/products/{id}")
+    public ProductResponse showProduct(@PathVariable Long id){
+        return productService.showProductById(id);
+    }
 
 }
 
