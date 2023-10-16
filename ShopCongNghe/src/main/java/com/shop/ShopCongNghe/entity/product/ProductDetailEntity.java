@@ -31,6 +31,9 @@ public class ProductDetailEntity {
     private String description;
 
     @Column( nullable = true )
+    private String name;
+
+    @Column( nullable = true )
     @Lob
     private String video;
 
@@ -87,6 +90,14 @@ public class ProductDetailEntity {
 
     @OneToMany(mappedBy = "product_details", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ColorEntity> color = new ArrayList<>();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<ColorEntity> getColor() {
         return color;

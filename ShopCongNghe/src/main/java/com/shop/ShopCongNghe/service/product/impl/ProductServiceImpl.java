@@ -116,6 +116,7 @@ public class ProductServiceImpl implements ProductService {
                 productDetail.setBattery(productEntity.get(i).getProductDetails().get(j).getBattery());
                 productDetail.setChip(productEntity.get(i).getProductDetails().get(j).getChip());
                 productDetail.setScreen(productEntity.get(i).getProductDetails().get(j).getScreen());
+                productDetail.setName(productEntity.get(i).getProductDetails().get(j).getName());
 
                 RamResponse a = new RamResponse();
                 a.setId(productEntity.get(i).getProductDetails().get(j).getRam().getId());
@@ -189,6 +190,7 @@ public class ProductServiceImpl implements ProductService {
             productDetail.setBattery(productEntity.getProductDetails().get(i).getBattery());
             productDetail.setChip(productEntity.getProductDetails().get(i).getChip());
             productDetail.setScreen(productEntity.getProductDetails().get(i).getScreen());
+            productDetail.setName(productEntity.getProductDetails().get(i).getName());
 
             RamResponse a = new RamResponse();
             a.setId(productEntity.getProductDetails().get(i).getRam().getId());

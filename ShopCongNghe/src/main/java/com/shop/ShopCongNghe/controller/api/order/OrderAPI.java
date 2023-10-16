@@ -22,7 +22,7 @@ public class OrderAPI {
     private OrderService orderService;
 
     @PostMapping( "/orders" )
-    public Boolean addProduct(@RequestBody OrderRequest orderRequest  ){
+    public Boolean addOrder(@RequestBody OrderRequest orderRequest  ){
         try {
             return orderService.saveOrder( orderRequest );
         } catch (Exception e){
@@ -31,7 +31,7 @@ public class OrderAPI {
         return false ;
     }
 
-    @GetMapping("/orders")
+    @GetMapping("/orders/{id}")
     public List<OrderResponse> showOrderByUser(@PathVariable Long id){
         return orderService.showAllOrderByUser(id);
     }

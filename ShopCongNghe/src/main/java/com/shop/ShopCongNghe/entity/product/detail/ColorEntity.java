@@ -29,6 +29,7 @@ public class ColorEntity {
     private String name;
 
     @Column( nullable = true )
+    @Lob
     private String image_link;
 
     @ManyToOne(fetch = FetchType.LAZY)

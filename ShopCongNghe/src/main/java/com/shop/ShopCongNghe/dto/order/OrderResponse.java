@@ -1,15 +1,33 @@
 package com.shop.ShopCongNghe.dto.order;
 
+import com.shop.ShopCongNghe.dto.order_detail.OrderDetailResponse;
 import com.shop.ShopCongNghe.dto.user.UserResponse;
+import com.shop.ShopCongNghe.entity.user.UserEntity;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class OrderResponse {
+
     private Long id;
 
-    private Float into_money;
+    private Float total_money;
 
     private Long status;
 
     private UserResponse user;
+
+    private List<OrderDetailResponse> order_detail = new ArrayList<>();
+
+
+    public List<OrderDetailResponse> getOrder_detail() {
+        return order_detail;
+    }
+
+    public void setOrder_detail(List<OrderDetailResponse> order_detail) {
+        this.order_detail = order_detail;
+    }
 
     public Long getId() {
         return id;
@@ -19,12 +37,12 @@ public class OrderResponse {
         this.id = id;
     }
 
-    public Float getInto_money() {
-        return into_money;
+    public Float getTotal_money() {
+        return total_money;
     }
 
-    public void setInto_money(Float into_money) {
-        this.into_money = into_money;
+    public void setTotal_money(Float total_money) {
+        this.total_money = total_money;
     }
 
     public Long getStatus() {

@@ -15,6 +15,8 @@ public class ProductDetailResponse {
 
     private Long id;
     private String description;
+
+    private String name;
     private Long quantity_remain;
     private String video;
 
@@ -37,6 +39,13 @@ public class ProductDetailResponse {
 
     private ProductResponse product ;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     private List<ColorResponse> color;
 

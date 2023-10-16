@@ -67,6 +67,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setQuantity_remain(productDetailRequest.getQuantity_remain());
             productDetail.setChip(productDetailRequest.getChip());
             productDetail.setScreen(productDetailRequest.getScreen());
+            productDetail.setName(productDetailRequest.getName());
 
             ProductEntity check_product = productService.getProduct(productDetailRequest.getProduct_id());
             RamEntity check_ram = ramService.getRam(productDetailRequest.getRam_id());
@@ -184,6 +185,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                 productDetail.setQuantity_remain( productDetailEntities.get(i).getQuantity_remain() );
                 productDetail.setChip(productDetailEntities.get(i).getChip());
                 productDetail.setScreen(productDetailEntities.get(i).getScreen());
+                productDetail.setName(productDetailEntities.get(i).getName());
                 productDetailResponses.add(productDetail);
 
             }
@@ -268,6 +270,7 @@ public class ProductDetailServiceImpl implements ProductDetailService {
             productDetail.setQuantity_remain( productDetailEntities.getQuantity_remain() );
             productDetail.setChip(productDetailEntities.getChip());
             productDetail.setScreen(productDetailEntities.getScreen());
+            productDetail.setName(productDetailEntities.getName());
 
             if (productDetail == null){
                 return null;
