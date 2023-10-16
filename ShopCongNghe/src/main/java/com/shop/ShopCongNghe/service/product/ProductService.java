@@ -16,6 +16,8 @@ public interface ProductService {
     ProductEntity getProduct( Long id );
     List<ProductResponse> showAllProduct();
 
+    List<ProductResponse> showAllProductCategory(long id);
+
     ProductResponse showProductById(Long id);
 
 }

@@ -53,7 +53,7 @@ public class ProductServiceImpl implements ProductService {
 
 
             BranchEntity exist_branch = branchService.getBranch(productRequest.getBranch_id());
-            CategoryEntity exist_category = categoryService.getCategory(productRequest.getBranch_id());
+            CategoryEntity exist_category = categoryService.getCategory(productRequest.getCategory_id());
             if( exist_branch != null ){
                 product.checkBranch(exist_branch);
             }
@@ -78,6 +78,85 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponse> showAllProduct() {
         List<ProductResponse> productResponses = new ArrayList<>();
         List<ProductEntity> productEntity = productRepository.findAll();
+        for( int i = 0 ; i < productEntity.size() ; i++ ){
+            ProductResponse proRes = new ProductResponse();
+            proRes.setId(productEntity.get(i).getId());
+            proRes.setTitle( productEntity.get(i).getTitle() );
+            proRes.setName( productEntity.get(i).getName() ) ;
+            proRes.setDescription( productEntity.get(i).getDescription() );
+            proRes.setImage( productEntity.get(i).getImage() );
+            proRes.setOrigin(productEntity.get(i).getOrigin());
+
+            if (productEntity.get(i).getBranch() != null){
+                BranchResponse branch = new BranchResponse();
+                branch.setId( productEntity.get(i).getBranch().getId() );
+                branch.setName( productEntity.get(i).getBranch().getName() );
+                proRes.setBranch( branch );
+            }
+            if ( productEntity.get(i).getCategory() != null ){
+                CategoryResponse category = new CategoryResponse();
+                category.setId( productEntity.get(i).getCategory().getId() );
+                category.setName( productEntity.get(i).getCategory().getName() );
+                proRes.setCategory( category );
+            }
+
+
+
+            List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
+            for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
+                ProductDetailResponse productDetail = new ProductDetailResponse();
+                productDetail.setId(productEntity.get(i).getProductDetails().get(j).getId());
+                productDetail.setDescription(productEntity.get(i).getProductDetails().get(j).getDescription());
+                productDetail.setQuantity_remain(productEntity.get(i).getProductDetails().get(j).getQuantity_remain());
+                productDetail.setVideo(productEntity.get(i).getProductDetails().get(j).getVideo());
+                productDetail.setImage(productEntity.get(i).getProductDetails().get(j).getImage());
+                productDetail.setPrice(productEntity.get(i).getProductDetails().get(j).getPrice());
+                productDetail.setCamera(productEntity.get(i).getProductDetails().get(j).getCamera());
+                productDetail.setCameraSelf(productEntity.get(i).getProductDetails().get(j).getCameraSelf());
+                productDetail.setBattery(productEntity.get(i).getProductDetails().get(j).getBattery());
+                productDetail.setChip(productEntity.get(i).getProductDetails().get(j).getChip());
+                productDetail.setScreen(productEntity.get(i).getProductDetails().get(j).getScreen());
+                productDetail.setName(productEntity.get(i).getProductDetails().get(j).getName());
+
+                RamResponse a = new RamResponse();
+                a.setId(productEntity.get(i).getProductDetails().get(j).getRam().getId());
+                a.setName(productEntity.get(i).getProductDetails().get(j).getRam().getName());
+                RomResponse b = new RomResponse();
+                b.setId(productEntity.get(i).getProductDetails().get(j).getRom().getId());
+                b.setName(productEntity.get(i).getProductDetails().get(j).getRom().getName());
+                List<ColorResponse> colorResponses = new ArrayList<>();
+                for (int k = 0; k < productEntity.get(i).getProductDetails().get(j).getColor().size(); k++) {
+                    ColorResponse c = new ColorResponse();
+                    c.setId(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getId());
+                    c.setName(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getName());
+                    c.setImage_link(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getImage_link());
+                    colorResponses.add(c);
+                }
+                OsResponse d = new OsResponse();
+                d.setId(productEntity.get(i).getProductDetails().get(j).getOs().getId());
+                d.setName(productEntity.get(i).getProductDetails().get(j).getOs().getName());
+                CardResponse e = new CardResponse();
+                e.setId(productEntity.get(i).getProductDetails().get(j).getCard().getId());
+                e.setName(productEntity.get(i).getProductDetails().get(j).getCard().getName());
+                productDetail.setRam(a);
+                productDetail.setRom(b);
+                productDetail.setColor(colorResponses);
+                productDetail.setOs(d);
+                productDetail.setCard(e);
+
+                productDetailResponses.add(productDetail);
+
+            }
+            proRes.setProduct_detail(productDetailResponses);
+            productResponses.add(proRes);
+        }
+        return productResponses ;
+    }
+
+    @Override
+    public List<ProductResponse> showAllProductCategory(long id) {
+        List<ProductResponse> productResponses = new ArrayList<>();
+        List<ProductEntity> productEntity = productRepository.findByCategoryId(id);
         for( int i = 0 ; i < productEntity.size() ; i++ ){
             ProductResponse proRes = new ProductResponse();
             proRes.setId(productEntity.get(i).getId());

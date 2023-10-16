@@ -29,17 +29,18 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public Boolean saveOrderDetail(OrderDetailRequest order_detail) {
         try {
             OrderDetailEntity order = new OrderDetailEntity();
-            order.setId(order_detail.getId());
+            //order.setId(order_detail.getId());
             order.setInto_money(order_detail.getInto_money());
             order.setDate_note(order_detail.getDate_note());
             order.setQuantity(order_detail.getQuantity());
-            ProductDetailEntity productDetailEntity = productDetailRepository.findById(order_detail.getId()).get();
-            OrderEntity orderEntity = orderRepository.findById(order_detail.getId()).get();
+            ProductDetailEntity productDetailEntity = productDetailRepository.findById(order_detail.getProduct_detail_id()).get();
+            OrderEntity orderEntity = orderRepository.findById(order_detail.getOrder_id()).get();
             order.setOrder(orderEntity);
             order.setProduct_detail(productDetailEntity);
             orderDetailRepository.save(order) ;
             return true;
         } catch(Exception e){
+            System.out.println("Error service order detail create");
             System.out.println(e);
             return false;
         }

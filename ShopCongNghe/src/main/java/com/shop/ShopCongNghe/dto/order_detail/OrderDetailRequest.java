@@ -14,7 +14,7 @@ public class OrderDetailRequest {
     private Date date_note;
 
     private Long order_id;
-    private Long product_id;
+    private Long product_detail_id;
 
     public Long getId() {
         return id;
@@ -56,11 +56,11 @@ public class OrderDetailRequest {
         this.order_id = order_id;
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProduct_detail_id() {
+        return product_detail_id;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProduct_detail_id(Long product_detail_id) {
+        this.product_detail_id = product_detail_id;
     }
 }

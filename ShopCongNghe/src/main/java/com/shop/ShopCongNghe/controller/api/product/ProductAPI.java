@@ -35,6 +35,11 @@ public class ProductAPI {
         return productService.showAllProduct();
     }
 
+    @GetMapping("/products/category/{id}")
+    public List<ProductResponse> showProductAllCategory(@PathVariable Long id){
+        return productService.showAllProductCategory(id);
+    }
+
     @GetMapping("/products/{id}")
     public ProductResponse showProduct(@PathVariable Long id){
         return productService.showProductById(id);
