@@ -128,6 +128,7 @@ public class ProductServiceImpl implements ProductService {
                     ColorResponse c = new ColorResponse();
                     c.setId(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getId());
                     c.setName(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getName());
+                    c.setImage_link(productEntity.get(i).getProductDetails().get(j).getColor().get(k).getImage_link());
                     colorResponses.add(c);
                 }
                 OsResponse d = new OsResponse();
@@ -200,6 +201,7 @@ public class ProductServiceImpl implements ProductService {
                 ColorResponse c = new ColorResponse();
                 c.setId(productEntity.getProductDetails().get(i).getColor().get(j).getId());
                 c.setName(productEntity.getProductDetails().get(i).getColor().get(j).getName());
+                c.setImage_link(productEntity.getProductDetails().get(i).getColor().get(j).getImage_link());
                 colorResponses.add(c);
             }
             OsResponse d = new OsResponse();

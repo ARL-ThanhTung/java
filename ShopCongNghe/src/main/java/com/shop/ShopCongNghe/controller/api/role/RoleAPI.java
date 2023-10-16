@@ -18,7 +18,7 @@ public class RoleAPI {
     @Autowired
     private RoleService roleService;
     @PostMapping( "/roles" )
-    public RoleEntity addRole(RoleEntity roleEntity){
+    public RoleEntity addRole(@RequestBody RoleEntity roleEntity){
         try {
             return roleService.saveRole( roleEntity );
         } catch (Exception e){

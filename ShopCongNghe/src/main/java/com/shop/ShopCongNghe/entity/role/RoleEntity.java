@@ -31,12 +31,9 @@ public class RoleEntity {
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<UserEntity> user = new ArrayList<>();
 
-
     public Long getId() {
         return id;
     }
-
-
 
     public String getName() {
         return name;
