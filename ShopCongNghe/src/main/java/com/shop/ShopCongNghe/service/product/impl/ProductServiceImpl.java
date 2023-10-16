@@ -105,17 +105,17 @@ public class ProductServiceImpl implements ProductService {
             List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
             for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
                 ProductDetailResponse productDetail = new ProductDetailResponse();
-                productDetail.setId(productEntity.get(i).getProductDetails().get(i).getId());
-                productDetail.setDescription(productEntity.get(i).getProductDetails().get(i).getDescription());
-                productDetail.setQuantity_remain(productEntity.get(i).getProductDetails().get(i).getQuantity_remain());
-                productDetail.setVideo(productEntity.get(i).getProductDetails().get(i).getVideo());
-                productDetail.setImage(productEntity.get(i).getProductDetails().get(i).getImage());
-                productDetail.setPrice(productEntity.get(i).getProductDetails().get(i).getPrice());
-                productDetail.setCamera(productEntity.get(i).getProductDetails().get(i).getCamera());
-                productDetail.setCameraSelf(productEntity.get(i).getProductDetails().get(i).getCameraSelf());
-                productDetail.setBattery(productEntity.get(i).getProductDetails().get(i).getBattery());
-                productDetail.setChip(productEntity.get(i).getProductDetails().get(i).getChip());
-                productDetail.setScreen(productEntity.get(i).getProductDetails().get(i).getScreen());
+                productDetail.setId(productEntity.get(i).getProductDetails().get(j).getId());
+                productDetail.setDescription(productEntity.get(i).getProductDetails().get(j).getDescription());
+                productDetail.setQuantity_remain(productEntity.get(i).getProductDetails().get(j).getQuantity_remain());
+                productDetail.setVideo(productEntity.get(i).getProductDetails().get(j).getVideo());
+                productDetail.setImage(productEntity.get(i).getProductDetails().get(j).getImage());
+                productDetail.setPrice(productEntity.get(i).getProductDetails().get(j).getPrice());
+                productDetail.setCamera(productEntity.get(i).getProductDetails().get(j).getCamera());
+                productDetail.setCameraSelf(productEntity.get(i).getProductDetails().get(j).getCameraSelf());
+                productDetail.setBattery(productEntity.get(i).getProductDetails().get(j).getBattery());
+                productDetail.setChip(productEntity.get(i).getProductDetails().get(j).getChip());
+                productDetail.setScreen(productEntity.get(i).getProductDetails().get(j).getScreen());
 
                 RamResponse a = new RamResponse();
                 a.setId(productEntity.get(i).getProductDetails().get(j).getRam().getId());

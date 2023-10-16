@@ -11,4 +11,6 @@ public interface RoleService {
     RoleEntity saveRole(RoleEntity role );
     List<RoleEntity> showAllRole();
 
+    RoleEntity showRole(Long id);
+
 }

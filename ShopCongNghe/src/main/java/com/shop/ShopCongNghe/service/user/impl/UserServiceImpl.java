@@ -4,6 +4,7 @@ package com.shop.ShopCongNghe.service.user.impl;
 import com.shop.ShopCongNghe.dto.role.RoleResponse;
 import com.shop.ShopCongNghe.dto.user.UserRequest;
 import com.shop.ShopCongNghe.dto.user.UserResponse;
+import com.shop.ShopCongNghe.entity.role.RoleEntity;
 import com.shop.ShopCongNghe.entity.user.UserEntity;
 import com.shop.ShopCongNghe.repository.user.UserRepository;
 import com.shop.ShopCongNghe.service.role.RoleService;
@@ -19,8 +20,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-//    @Autowired
-//    private RoleService roleService;
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public Boolean saveUser(UserRequest user) {
@@ -32,7 +33,8 @@ public class UserServiceImpl implements UserService {
             userEntity.setFull_name(user.getFull_name());
             userEntity.setPhone_number(user.getPhone());
             userEntity.setPassword(user.getPassword());
-            //roleService.
+            RoleEntity roleEntity = roleService.showRole(user.getRole_id());
+            userEntity.setRole(roleEntity);
             userRepository.save(userEntity);
             return true;
         }catch(Exception e){
@@ -62,10 +64,10 @@ public class UserServiceImpl implements UserService {
             userResponse.setAddress(user.getAddress());
             userResponse.setEmail(user.getEmail());
             userResponse.setFull_name(user.getFull_name());
-//            RoleResponse roleResponse = new RoleResponse();
-//            roleResponse.setId(user.getRole().getId());
-//            roleResponse.setName(user.getRole().getName());
-//            userResponse.setRole(roleResponse);
+            RoleResponse roleResponse = new RoleResponse();
+            roleResponse.setId(user.getRole().getId());
+            roleResponse.setName(user.getRole().getName());
+            userResponse.setRole(roleResponse);
             return userResponse;
         }catch(Exception e){
             System.out.println("Error get list user");
@@ -73,5 +75,10 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
+    }
+
+    @Override
+    public UserEntity showUserEntiy(Long id) {
+        return userRepository.findById(id).get();
     }
 }

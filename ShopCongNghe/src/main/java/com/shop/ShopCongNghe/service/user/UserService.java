@@ -12,4 +12,6 @@ public interface UserService {
     //List<UserEntity> showAllUser();
 
     UserResponse showUser(Long id);
+
+    UserEntity showUserEntiy( Long id );
 }
