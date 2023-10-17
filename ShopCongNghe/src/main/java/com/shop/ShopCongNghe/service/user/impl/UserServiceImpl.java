@@ -9,6 +9,7 @@ import com.shop.ShopCongNghe.entity.user.UserEntity;
 import com.shop.ShopCongNghe.repository.user.UserRepository;
 import com.shop.ShopCongNghe.service.role.RoleService;
 import com.shop.ShopCongNghe.service.user.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,23 +25,48 @@ public class UserServiceImpl implements UserService {
     private RoleService roleService;
 
     @Override
-    public Boolean saveUser(UserRequest user) {
+    public UserResponse saveUser(UserRequest user) {
         try {
+            UserEntity userExist = userRepository.findByPhoneNumber(user.getPhone());
+            if(userExist != null){
+                UserResponse userResponse = new UserResponse();
+                userResponse.setId(userExist.getId());
+                userResponse.setAddress(userExist.getAddress());
+                userResponse.setEmail(userExist.getEmail());
+                userResponse.setFull_name(userExist.getFull_name());
+                userResponse.setPassword(userExist.getPassword());
+                RoleResponse roleResponse = new RoleResponse();
+                roleResponse.setId(userExist.getRole().getId());
+                roleResponse.setName(userExist.getRole().getName());
+                userResponse.setRole(roleResponse);
+                return userResponse;
+            }
+
             UserEntity userEntity = new UserEntity();
-            userEntity.setId(user.getId());
+            //userEntity.setId(user.getId());
             userEntity.setAddress(user.getAddress());
             userEntity.setEmail(user.getEmail());
             userEntity.setFull_name(user.getFull_name());
-            userEntity.setPhone_number(user.getPhone());
+            userEntity.setPhoneNumber(user.getPhone());
             userEntity.setPassword(user.getPassword());
             RoleEntity roleEntity = roleService.showRole(user.getRole_id());
             userEntity.setRole(roleEntity);
             userRepository.save(userEntity);
-            return true;
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(userEntity.getId());
+            userResponse.setAddress(userEntity.getAddress());
+            userResponse.setEmail(userEntity.getEmail());
+            userResponse.setFull_name(userEntity.getFull_name());
+            userResponse.setPassword(userEntity.getPassword());
+            RoleResponse roleResponse = new RoleResponse();
+            roleResponse.setId(userEntity.getRole().getId());
+            roleResponse.setName(userEntity.getRole().getName());
+            userResponse.setRole(roleResponse);
+            return userResponse;
         }catch(Exception e){
             System.out.println("Error API create user");
             System.out.println(e);
-            return false;
+            return null;
         }
     }
 
@@ -63,6 +89,7 @@ public class UserServiceImpl implements UserService {
             userResponse.setId(user.getId());
             userResponse.setAddress(user.getAddress());
             userResponse.setEmail(user.getEmail());
+            userResponse.setPassword((user.getPassword()));
             userResponse.setFull_name(user.getFull_name());
             RoleResponse roleResponse = new RoleResponse();
             roleResponse.setId(user.getRole().getId());

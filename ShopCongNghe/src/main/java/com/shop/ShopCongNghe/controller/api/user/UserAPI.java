@@ -17,7 +17,7 @@ public class UserAPI {
 
 
     @PostMapping( "/users" )
-    public Boolean addCustomer(@RequestBody UserRequest user ){
+    public UserResponse addCustomer(@RequestBody UserRequest user ){
         return customerService.saveUser(user);
     }
 

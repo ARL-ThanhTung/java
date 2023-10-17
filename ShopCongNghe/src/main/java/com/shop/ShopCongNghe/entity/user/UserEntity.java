@@ -29,7 +29,7 @@ public class UserEntity {
     private String full_name;
 
     @Column( nullable = true )
-    private String phone_number;
+    private String phoneNumber;
 
     @Column( nullable = true )
     private String password;
@@ -88,12 +88,12 @@ public class UserEntity {
         this.full_name = full_name;
     }
 
-    public String getPhone_number() {
-        return phone_number;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getAddress() {

@@ -6,4 +6,7 @@ import com.shop.ShopCongNghe.entity.user.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Long> {
+    //UserEntity findByPhoneNumber(String phoneNumber);
+
+    UserEntity findByPhoneNumber(String phone);
 }

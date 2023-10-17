@@ -8,7 +8,7 @@ import com.shop.ShopCongNghe.dto.user.UserRequest;
 
 public interface UserService {
 
-    Boolean saveUser(UserRequest user );
+    UserResponse saveUser(UserRequest user );
     //List<UserEntity> showAllUser();
 
     UserResponse showUser(Long id);
