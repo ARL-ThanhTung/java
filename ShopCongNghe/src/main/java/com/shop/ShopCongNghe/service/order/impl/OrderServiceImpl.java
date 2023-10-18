@@ -23,6 +23,8 @@ import org.modelmapper.ModelMapper;
 import com.shop.ShopCongNghe.dto.order.OrderRequest;
 import com.shop.ShopCongNghe.dto.order.OrderResponse;
 
+import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Boolean saveOrder(OrderRequest order) {
         try {
+
+            java.util.Date currentDate = new java.util.Date();
+            Date date_note = new Date(currentDate.getYear(), currentDate.getMonth(), currentDate.getDate());
+
+
             OrderEntity orderEntity = new OrderEntity();
             orderEntity.setId(order.getId());
             orderEntity.setStatus(order.getStatus());
@@ -65,14 +72,14 @@ public class OrderServiceImpl implements OrderService {
                 if (pro != null) {
                     orderDetail.setProduct_detail(pro);
                     orderDetail.setQuantity(order.getOrderDetail().get(i).getQuantity());
-                    orderDetail.setDate_note(order.getOrderDetail().get(i).getDate_note());
+                    orderDetail.setDate_note(date_note);
                     orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
                     orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
                 }
                 ordDe.add(orderDetail);
             }
             orderEntity.setOrder_detail(ordDe);
-            orderRepository.save(orderEntity);    
+            orderRepository.save(orderEntity);
             return true;
         } catch(Exception e){
             System.out.println("Error service create");
