@@ -48,9 +48,9 @@ public class OrderDetailResponse {
         this.into_money = into_money;
     }
 
-    public Date getDate_note() {
-        return date_note;
-    }
+//    public Date getDate_note() {
+//        return date_note;
+//    }
 
     public void setDate_note(Date date_note) {
         this.date_note = date_note;
