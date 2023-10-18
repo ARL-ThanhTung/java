@@ -4,7 +4,7 @@ import com.shop.ShopCongNghe.dto.order.OrderResponse;
 import com.shop.ShopCongNghe.dto.productdetail.ProductDetailResponse;
 
 import java.sql.Date;
-
+import java.text.SimpleDateFormat;
 public class OrderDetailResponse {
     private Long id;
 
@@ -13,12 +13,16 @@ public class OrderDetailResponse {
     private Float into_money;
 
     private Date date_note;
+    public String getDateNoteAsString() {
+        if (date_note != null) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            return dateFormat.format(date_note);
+        }
+        return null;
+    }
 
     private OrderResponse order;
     private ProductDetailResponse product_detail;
-
-
-
 
     public Long getId() {
         return id;

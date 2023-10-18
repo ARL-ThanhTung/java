@@ -117,7 +117,7 @@ public class OrderServiceImpl implements OrderService {
                     ordetailDetailResponse.setQuantity(orderEntity.get(i).getOrder_detail().get(j).getQuantity());
                     ordetailDetailResponse.setInto_money(orderEntity.get(i).getOrder_detail().get(j).getInto_money());
                     ordetailDetailResponse.setDate_note(orderEntity.get(i).getOrder_detail().get(j).getDate_note());
-
+                    String dateAsString = ordetailDetailResponse.getDateNoteAsString();
                     ProductDetailResponse productDetailResponse = new ProductDetailResponse();
                     productDetailResponse.setId(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getId());
                     productDetailResponse.setDescription(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getDescription());
