@@ -5,6 +5,8 @@ import com.shop.ShopCongNghe.dto.role.RoleResponse;
 public class UserResponse {
 
     private Long id;
+    private String phoneNumber;
+
     private String password;
     private String full_name;
     private String address;
@@ -12,6 +14,15 @@ public class UserResponse {
     private String email;
 
     private RoleResponse role;
+
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Long getId() {
         return id;

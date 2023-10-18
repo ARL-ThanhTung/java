@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
                 userResponse.setEmail(userExist.getEmail());
                 userResponse.setFull_name(userExist.getFull_name());
                 userResponse.setPassword(userExist.getPassword());
+                userResponse.setPhoneNumber(userExist.getPhoneNumber());
                 RoleResponse roleResponse = new RoleResponse();
                 roleResponse.setId(userExist.getRole().getId());
                 roleResponse.setName(userExist.getRole().getName());
@@ -91,6 +92,7 @@ public class UserServiceImpl implements UserService {
             userResponse.setEmail(user.getEmail());
             userResponse.setPassword((user.getPassword()));
             userResponse.setFull_name(user.getFull_name());
+            userResponse.setPhoneNumber(user.getPhoneNumber());
             RoleResponse roleResponse = new RoleResponse();
             roleResponse.setId(user.getRole().getId());
             roleResponse.setName(user.getRole().getName());
