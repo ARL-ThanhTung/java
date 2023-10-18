@@ -1,4 +1,8 @@
 package com.shop.ShopCongNghe.dto.order;
+import com.shop.ShopCongNghe.dto.order_detail.OrderDetailRequest;
+import com.shop.ShopCongNghe.dto.order_detail.OrderDetailResponse;
+
+import java.util.List;
 
 public class OrderRequest {
 
@@ -10,6 +14,16 @@ public class OrderRequest {
 
     private Long status;
 
+    private List<OrderDetailRequest> OrderDetail;
+
+
+    public List<OrderDetailRequest> getOrderDetail() {
+        return OrderDetail;
+    }
+
+    public void setOrderDetail(List<OrderDetailRequest> orderDetail) {
+        OrderDetail = orderDetail;
+    }
 
     public Long getId() {
         return id;

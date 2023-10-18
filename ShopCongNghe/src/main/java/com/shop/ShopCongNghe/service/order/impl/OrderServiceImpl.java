@@ -1,11 +1,20 @@
 package com.shop.ShopCongNghe.service.order.impl;
 
+import com.shop.ShopCongNghe.dto.detail.card.CardResponse;
+import com.shop.ShopCongNghe.dto.detail.color.ColorResponse;
+import com.shop.ShopCongNghe.dto.detail.os.OsResponse;
+import com.shop.ShopCongNghe.dto.detail.ram.RamResponse;
+import com.shop.ShopCongNghe.dto.detail.rom.RomResponse;
 import com.shop.ShopCongNghe.dto.order_detail.OrderDetailResponse;
 import com.shop.ShopCongNghe.dto.productdetail.ProductDetailResponse;
 import com.shop.ShopCongNghe.dto.user.UserResponse;
 import com.shop.ShopCongNghe.entity.order.OrderEntity;
+import com.shop.ShopCongNghe.entity.order_detail.OrderDetailEntity;
+import com.shop.ShopCongNghe.entity.product.ProductDetailEntity;
 import com.shop.ShopCongNghe.entity.user.UserEntity;
 import com.shop.ShopCongNghe.repository.order.OrderRepository;
+import com.shop.ShopCongNghe.repository.order_detail.OrderDetailRepository;
+import com.shop.ShopCongNghe.repository.product.ProductDetailRepository;
 import com.shop.ShopCongNghe.service.order.OrderService;
 import com.shop.ShopCongNghe.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +30,16 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     private ModelMapper modelMapper;
-
+    @Autowired
+    private ProductDetailRepository productDetailRepository;
     @Autowired
     private UserService userService;
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderDetailRepository orderDetailRepository;
 
 //    @Autowired
 //    public OrderServiceImpl(ModelMapper modelMapper) {
@@ -43,7 +56,23 @@ public class OrderServiceImpl implements OrderService {
             orderEntity.setTotal_amount(order.getTotal_amount());
             UserEntity userEntity = userService.showUserEntiy(order.getUser_id());
             orderEntity.setUser(userEntity);
-            orderRepository.save(orderEntity);
+            //orderRepository.save(orderEntity);
+            OrderEntity ord = orderEntity;
+            List<OrderDetailEntity> ordDe = new ArrayList<>();
+            for( int i = 0 ; i < order.getOrderDetail().size() ;i++ ){
+                OrderDetailEntity orderDetail = new OrderDetailEntity();
+                ProductDetailEntity pro = productDetailRepository.findById(order.getOrderDetail().get(i).getProduct_detail_id() ).orElse(null) ;
+                if (pro != null) {
+                    orderDetail.setProduct_detail(pro);
+                    orderDetail.setQuantity(order.getOrderDetail().get(i).getQuantity());
+                    orderDetail.setDate_note(order.getOrderDetail().get(i).getDate_note());
+                    orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
+                    orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
+                }
+                ordDe.add(orderDetail);
+            }
+            orderEntity.setOrder_detail(ordDe);
+            orderRepository.save(orderEntity);    
             return true;
         } catch(Exception e){
             System.out.println("Error service create");
