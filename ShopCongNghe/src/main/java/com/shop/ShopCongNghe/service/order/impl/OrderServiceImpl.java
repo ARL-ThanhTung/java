@@ -60,10 +60,12 @@ public class OrderServiceImpl implements OrderService {
             OrderEntity orderEntity = new OrderEntity();
             orderEntity.setId(order.getId());
             orderEntity.setStatus(order.getStatus());
-            orderEntity.setTotal_amount(order.getTotal_amount());
+
             UserEntity userEntity = userService.showUserEntiy(order.getUser_id());
             orderEntity.setUser(userEntity);
             //orderRepository.save(orderEntity);
+
+            float totalMoney = 0;
             OrderEntity ord = orderEntity;
             List<OrderDetailEntity> ordDe = new ArrayList<>();
             for( int i = 0 ; i < order.getOrderDetail().size() ;i++ ){
@@ -75,7 +77,9 @@ public class OrderServiceImpl implements OrderService {
                     orderDetail.setDate_note(date_note);
                     orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
                     orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
+                    totalMoney += order.getOrderDetail().get(i).getQuantity() * order.getOrderDetail().get(i).getInto_money() ;
                 }
+                orderEntity.setTotal_amount(totalMoney);
                 ordDe.add(orderDetail);
             }
             orderEntity.setOrder_detail(ordDe);
@@ -107,6 +111,8 @@ public class OrderServiceImpl implements OrderService {
                 userResponse.setEmail(orderEntity.get(i).getUser().getEmail());
                 userResponse.setAddress(orderEntity.get(i).getUser().getAddress());
                 userResponse.setFull_name(orderEntity.get(i).getUser().getFull_name());
+                userResponse.setPassword(orderEntity.get(i).getUser().getPassword());
+                userResponse.setPhoneNumber(orderEntity.get(i).getUser().getPhoneNumber());
 
                 orderResponse.setUser(userResponse);
 
