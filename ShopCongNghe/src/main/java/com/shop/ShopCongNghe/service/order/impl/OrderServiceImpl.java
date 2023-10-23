@@ -7,6 +7,7 @@ import com.shop.ShopCongNghe.dto.detail.ram.RamResponse;
 import com.shop.ShopCongNghe.dto.detail.rom.RomResponse;
 import com.shop.ShopCongNghe.dto.order_detail.OrderDetailResponse;
 import com.shop.ShopCongNghe.dto.productdetail.ProductDetailResponse;
+import com.shop.ShopCongNghe.dto.role.RoleResponse;
 import com.shop.ShopCongNghe.dto.user.UserResponse;
 import com.shop.ShopCongNghe.entity.order.OrderEntity;
 import com.shop.ShopCongNghe.entity.order_detail.OrderDetailEntity;
@@ -113,7 +114,10 @@ public class OrderServiceImpl implements OrderService {
                 userResponse.setFull_name(orderEntity.get(i).getUser().getFull_name());
                 userResponse.setPassword(orderEntity.get(i).getUser().getPassword());
                 userResponse.setPhoneNumber(orderEntity.get(i).getUser().getPhoneNumber());
-
+                RoleResponse roleResponse = new RoleResponse();
+                roleResponse.setId(orderEntity.get(i).getUser().getRole().getId());
+                roleResponse.setName(orderEntity.get(i).getUser().getRole().getName());
+                userResponse.setRole(roleResponse);
                 orderResponse.setUser(userResponse);
 
                 List<OrderDetailResponse> orr = new ArrayList<>();
