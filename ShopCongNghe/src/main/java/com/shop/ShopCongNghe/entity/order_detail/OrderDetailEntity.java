@@ -34,6 +34,10 @@ public class OrderDetailEntity {
     @Column( nullable = true )
     private Date date_note;
 
+    @Column( nullable = true )
+    @Lob
+    private String color;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private OrderEntity order;
@@ -42,6 +46,13 @@ public class OrderDetailEntity {
     @JoinColumn(name = "producr_detail_id")
     private ProductDetailEntity product_detail;
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public Long getId() {
         return id;

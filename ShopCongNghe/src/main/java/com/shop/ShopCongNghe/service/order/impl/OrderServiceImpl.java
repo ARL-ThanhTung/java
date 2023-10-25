@@ -77,6 +77,7 @@ public class OrderServiceImpl implements OrderService {
                     orderDetail.setQuantity(order.getOrderDetail().get(i).getQuantity());
                     orderDetail.setDate_note(date_note);
                     orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
+                    orderDetail.setColor(order.getOrderDetail().get(i).getColor());
                     orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
                     totalMoney += order.getOrderDetail().get(i).getQuantity() * order.getOrderDetail().get(i).getInto_money() ;
                 }
@@ -128,6 +129,7 @@ public class OrderServiceImpl implements OrderService {
                     ordetailDetailResponse.setQuantity(orderEntity.get(i).getOrder_detail().get(j).getQuantity());
                     ordetailDetailResponse.setInto_money(orderEntity.get(i).getOrder_detail().get(j).getInto_money());
                     ordetailDetailResponse.setDate_note(orderEntity.get(i).getOrder_detail().get(j).getDate_note());
+                    ordetailDetailResponse.setColor(orderEntity.get(i).getOrder_detail().get(j).getColor());
                     String dateAsString = ordetailDetailResponse.getDateNoteAsString();
                     // ProductDetail Response            trong                OrderDetail Response
                     ProductDetailResponse productDetailResponse = new ProductDetailResponse();
@@ -138,7 +140,7 @@ public class OrderServiceImpl implements OrderService {
                     productDetailResponse.setPrice(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getPrice());
                     productDetailResponse.setVideo(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getVideo());
                     productDetailResponse.setQuantity_remain( orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getQuantity_remain() );
-                    //productDetailResponse.setColor();
+
                     ordetailDetailResponse.setProduct_detail(productDetailResponse);
                     orr.add(ordetailDetailResponse);
                 }

@@ -29,7 +29,6 @@ public class SwaggerConfig {
                 .build();  //
     }
 
-
     // Hien mau
     @Bean
     public UiConfiguration uiConfig() {
@@ -39,6 +38,7 @@ public class SwaggerConfig {
                 .filter(true)
                 .build();
     }
+
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("Shop Công Nghệ API")
                 .description("Đây là nơi lưu api môn lập trình web").termsOfServiceUrl("")

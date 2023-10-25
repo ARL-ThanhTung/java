@@ -33,6 +33,7 @@ public class OrderDetailServiceImpl implements OrderDetailService {
             order.setInto_money(order_detail.getInto_money());
             order.setDate_note(order_detail.getDate_note());
             order.setQuantity(order_detail.getQuantity());
+            order.setColor(order_detail.getColor());
             ProductDetailEntity productDetailEntity = productDetailRepository.findById(order_detail.getProduct_detail_id()).get();
             OrderEntity orderEntity = orderRepository.findById(order_detail.getOrder_id()).get();
             order.setOrder(orderEntity);

@@ -13,8 +13,19 @@ public class OrderDetailRequest {
 
     private Date date_note;
 
+    private String color;
+
     private Long order_id;
     private Long product_detail_id;
+
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public Long getId() {
         return id;

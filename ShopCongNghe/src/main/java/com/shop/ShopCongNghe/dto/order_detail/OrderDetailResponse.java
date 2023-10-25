@@ -13,6 +13,8 @@ public class OrderDetailResponse {
     private Float into_money;
 
     private Date date_note;
+
+    private String color;
     public String getDateNoteAsString() {
         if (date_note != null) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -24,6 +26,14 @@ public class OrderDetailResponse {
     private OrderResponse order;
     private ProductDetailResponse product_detail;
 
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
     public Long getId() {
         return id;
     }
