@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import com.shop.ShopCongNghe.dto.product.ProductResponse;
 
 import java.util.List;
-
+import java.util.Optional;
 import com.shop.ShopCongNghe.dto.product.ProductRequest ;
 
 @RestController
@@ -30,17 +30,17 @@ public class ProductAPI {
         return null ;
     }
 
-//    @GetMapping("/products")
-//    public List<ProductResponse> showProductAll(@RequestParam("name") String name,
-//                                                @RequestParam("minPrice") float minPrice ,
-//                                                @RequestParam("maxPrice") float maxPrice){
-//        return productService.showAllProduct(name , 0 , 100000000);
-//    }
-
     @GetMapping("/products")
-    public List<ProductResponse> showProductAll(){
-        return productService.showAllProduct();
+    public List<ProductResponse> showProductAll(@RequestParam(value="name" , required = false) String name,
+                                                @RequestParam(value="minPrice", required = false ) Float minPrice ,
+                                                @RequestParam(value="maxPrice", required = false ) Float maxPrice){
+        return productService.showAllProduct(name , minPrice , maxPrice);
     }
+
+//    @GetMapping("/products")
+//    public List<ProductResponse> showProductAll(){
+//        return productService.showAllProduct();
+//    }
 
     @GetMapping("/products/category/{id}")
     public List<ProductResponse> showProductAllCategory(@PathVariable Long id ){

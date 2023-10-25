@@ -21,11 +21,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.shop.ShopCongNghe.dto.category.CategoryResponse;
 import com.shop.ShopCongNghe.dto.product.ProductResponse;
 import com.shop.ShopCongNghe.dto.branch.BranchResponse;
-
 import com.shop.ShopCongNghe.dto.product.ProductRequest ;
 
 @Service
@@ -77,10 +77,19 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductResponse> showAllProduct( /*String name , float minPrice , float maxPrice */ ) {
+    public List<ProductResponse> showAllProduct( String name , Float minPrice , Float maxPrice  ) {
         List<ProductResponse> productResponses = new ArrayList<>();
-        List<ProductEntity> productEntity = productRepository.findAll();
-        //List<ProductEntity> productEntity = productRepository.findUsersByNameMinPriceMaxPrice("name" , minPrice , maxPrice) ;
+        //List<ProductEntity> productEntity = productRepository.findAll();
+        List<ProductEntity> productEntity = new ArrayList<>();
+        if ( name != null && minPrice != null && maxPrice != null ){
+            productEntity = productRepository.findUsersByNameMinPriceMaxPrice(name , minPrice , maxPrice) ;
+            //productEntity = productRepository.findUsersByName(name) ;
+        }
+        else {
+            productEntity = productRepository.findAll();
+        }
+
+
         for( int i = 0 ; i < productEntity.size() ; i++ ){
             ProductResponse proRes = new ProductResponse();
             proRes.setId(productEntity.get(i).getId());

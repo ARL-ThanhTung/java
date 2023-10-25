@@ -7,15 +7,15 @@ import java.util.List;
 import com.shop.ShopCongNghe.dto.product.ProductRequest ;
 
 import com.shop.ShopCongNghe.dto.product.ProductResponse;
-
+import java.util.Optional;
 
 public interface ProductService {
 
     ProductEntity saveProduct( ProductRequest productRequest );
     ProductEntity getProduct( Long id );
 
-    //List<ProductResponse> showAllProduct(String name , float minPrice , float maxPrice);
-    List<ProductResponse> showAllProduct();
+    List<ProductResponse> showAllProduct(String name , Float minPrice , Float maxPrice);
+    //List<ProductResponse> showAllProduct();
 
     List<ProductResponse> showAllProductCategory(long id);
 

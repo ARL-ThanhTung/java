@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity,Long> {
@@ -17,6 +18,11 @@ public interface ProductRepository extends JpaRepository<ProductEntity,Long> {
     @Query("SELECT pro FROM ProductEntity  pro , ProductDetailEntity  prode WHERE pro.id = prode.product.id " +
             "and pro.name like %:name% and prode.price >= :minPrice " +
             "and prode.price <= :maxPrice")
-    List<ProductEntity> findUsersByNameMinPriceMaxPrice(@Param("name") String name , @Param("minPrice") float minPrice , @Param("maxPrice") float maxPrice);
+    List<ProductEntity> findUsersByNameMinPriceMaxPrice(@Param("name") String name ,
+                                                        @Param("minPrice") Float minPrice ,
+                                                        @Param("maxPrice") Float maxPrice);
+//    @Query("SELECT pro FROM ProductEntity  pro , ProductDetailEntity  prode WHERE pro.id = prode.product.id " +
+//            "and pro.name like %:name%")
+//    List<ProductEntity> findUsersByName(@Param("name") String name ); 
 
 }
