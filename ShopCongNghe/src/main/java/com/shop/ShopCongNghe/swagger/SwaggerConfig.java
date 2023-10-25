@@ -40,7 +40,7 @@ public class SwaggerConfig {
                 .build();
     }
     private ApiInfo apiInfo(){
-        return new ApiInfoBuilder().title("Shop SmartPhone API")
+        return new ApiInfoBuilder().title("Shop Công Nghệ API")
                 .description("Đây là nơi lưu api môn lập trình web").termsOfServiceUrl("")
                 .licenseUrl("")
                 .version("1.0")
