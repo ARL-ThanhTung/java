@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse saveUser(UserRequest user) {
         try {
-            UserEntity userExist = userRepository.findByPhoneNumber(user.getPhone());
+            UserEntity userExist = userRepository.findByPhoneNumber(user.getPhoneNumber());
+            // Response User Exist
             if(userExist != null){
                 UserResponse userResponse = new UserResponse();
                 userResponse.setId(userExist.getId());
@@ -42,23 +43,29 @@ public class UserServiceImpl implements UserService {
                 userResponse.setRole(roleResponse);
                 return userResponse;
             }
-
+            // Create user
             UserEntity userEntity = new UserEntity();
             //userEntity.setId(user.getId());
             userEntity.setAddress(user.getAddress());
             userEntity.setEmail(user.getEmail());
             userEntity.setFull_name(user.getFull_name());
-            userEntity.setPhoneNumber(user.getPhone());
+            userEntity.setPhoneNumber(user.getPhoneNumber());
             userEntity.setPassword(user.getPassword());
+            // Role add
             RoleEntity roleEntity = roleService.showRole(user.getRole_id());
             userEntity.setRole(roleEntity);
             userRepository.save(userEntity);
+
+            // Response
+            // User Response
             UserResponse userResponse = new UserResponse();
             userResponse.setId(userEntity.getId());
             userResponse.setAddress(userEntity.getAddress());
             userResponse.setEmail(userEntity.getEmail());
             userResponse.setFull_name(userEntity.getFull_name());
             userResponse.setPassword(userEntity.getPassword());
+            userResponse.setPhoneNumber(userEntity.getPhoneNumber());
+            // Role Response
             RoleResponse roleResponse = new RoleResponse();
             roleResponse.setId(userEntity.getRole().getId());
             roleResponse.setName(userEntity.getRole().getName());

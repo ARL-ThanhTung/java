@@ -74,10 +74,13 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findById(id).get();
     }
 
+
+
     @Override
-    public List<ProductResponse> showAllProduct() {
+    public List<ProductResponse> showAllProduct( /*String name , float minPrice , float maxPrice */ ) {
         List<ProductResponse> productResponses = new ArrayList<>();
         List<ProductEntity> productEntity = productRepository.findAll();
+        //List<ProductEntity> productEntity = productRepository.findUsersByNameMinPriceMaxPrice("name" , minPrice , maxPrice) ;
         for( int i = 0 ; i < productEntity.size() ; i++ ){
             ProductResponse proRes = new ProductResponse();
             proRes.setId(productEntity.get(i).getId());

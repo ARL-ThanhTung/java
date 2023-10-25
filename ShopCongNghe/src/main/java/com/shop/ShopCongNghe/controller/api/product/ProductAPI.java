@@ -30,13 +30,20 @@ public class ProductAPI {
         return null ;
     }
 
+//    @GetMapping("/products")
+//    public List<ProductResponse> showProductAll(@RequestParam("name") String name,
+//                                                @RequestParam("minPrice") float minPrice ,
+//                                                @RequestParam("maxPrice") float maxPrice){
+//        return productService.showAllProduct(name , 0 , 100000000);
+//    }
+
     @GetMapping("/products")
     public List<ProductResponse> showProductAll(){
         return productService.showAllProduct();
     }
 
     @GetMapping("/products/category/{id}")
-    public List<ProductResponse> showProductAllCategory(@PathVariable Long id){
+    public List<ProductResponse> showProductAllCategory(@PathVariable Long id ){
         return productService.showAllProductCategory(id);
     }
 

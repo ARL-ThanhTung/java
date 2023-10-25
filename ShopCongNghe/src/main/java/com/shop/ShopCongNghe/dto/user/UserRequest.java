@@ -6,19 +6,19 @@ public class UserRequest {
     private String password;
     private String full_name;
     private String address;
-    private String phone;
+    private String phoneNumber;
 
     private String email;
 
     private Long role_id;
 
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Long getId() {
