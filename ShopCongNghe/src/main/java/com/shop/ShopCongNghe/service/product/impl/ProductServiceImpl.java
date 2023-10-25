@@ -81,9 +81,8 @@ public class ProductServiceImpl implements ProductService {
         List<ProductResponse> productResponses = new ArrayList<>();
         //List<ProductEntity> productEntity = productRepository.findAll();
         List<ProductEntity> productEntity = new ArrayList<>();
-        if ( name != null && minPrice != null && maxPrice != null ){
-            productEntity = productRepository.findUsersByNameMinPriceMaxPrice(name , minPrice , maxPrice) ;
-            //productEntity = productRepository.findUsersByName(name) ;
+        if ( name != null ){
+            productEntity = productRepository.findUsersByName(name ) ;
         }
         else {
             productEntity = productRepository.findAll();
@@ -112,10 +111,10 @@ public class ProductServiceImpl implements ProductService {
                 proRes.setCategory( category );
             }
 
-
-
             List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
             for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
+
+
                 ProductDetailResponse productDetail = new ProductDetailResponse();
                 productDetail.setId(productEntity.get(i).getProductDetails().get(j).getId());
                 productDetail.setDescription(productEntity.get(i).getProductDetails().get(j).getDescription());
@@ -155,9 +154,16 @@ public class ProductServiceImpl implements ProductService {
                 productDetail.setColor(colorResponses);
                 productDetail.setOs(d);
                 productDetail.setCard(e);
-
+                if( minPrice != null && maxPrice != null ){
+                    if( productDetail.getPrice() <= minPrice || productDetail.getPrice() >= maxPrice ){
+                        continue;
+                    }
+                }
                 productDetailResponses.add(productDetail);
 
+            }
+            if (productDetailResponses.size() <= 0){
+                continue;
             }
             proRes.setProduct_detail(productDetailResponses);
             productResponses.add(proRes);
