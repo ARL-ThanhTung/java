@@ -114,7 +114,6 @@ public class ProductServiceImpl implements ProductService {
             List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
             for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
 
-
                 ProductDetailResponse productDetail = new ProductDetailResponse();
                 productDetail.setId(productEntity.get(i).getProductDetails().get(j).getId());
                 productDetail.setDescription(productEntity.get(i).getProductDetails().get(j).getDescription());

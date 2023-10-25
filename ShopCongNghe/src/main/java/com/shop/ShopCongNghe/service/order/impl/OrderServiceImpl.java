@@ -19,6 +19,7 @@ import com.shop.ShopCongNghe.repository.product.ProductDetailRepository;
 import com.shop.ShopCongNghe.service.order.OrderService;
 import com.shop.ShopCongNghe.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 import com.shop.ShopCongNghe.dto.order.OrderRequest;
@@ -56,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
 
             java.util.Date currentDate = new java.util.Date();
             Date date_note = new Date(currentDate.getYear(), currentDate.getMonth(), currentDate.getDate());
-
 
             OrderEntity orderEntity = new OrderEntity();
             orderEntity.setId(order.getId());
@@ -97,7 +97,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderResponse> showAllOrderByUser(Long id) {
         try {
-            List<OrderEntity> orderEntity = orderRepository.findByUserId(id);
+            List<OrderEntity> orderEntity = orderRepository.findByUserId(id , Sort.by(Sort.Order.desc("id") ));
 
             List<OrderResponse> orderResponses = new ArrayList<>();
             for(int i = 0 ; i < orderEntity.size() ; i++){
@@ -122,12 +122,14 @@ public class OrderServiceImpl implements OrderService {
 
                 List<OrderDetailResponse> orr = new ArrayList<>();
                 for(int j = 0 ; j < orderEntity.get(i).getOrder_detail().size() ; j++ ){
+                    // Order Response
                     OrderDetailResponse ordetailDetailResponse = new OrderDetailResponse();
                     ordetailDetailResponse.setId(orderEntity.get(i).getOrder_detail().get(j).getId());
                     ordetailDetailResponse.setQuantity(orderEntity.get(i).getOrder_detail().get(j).getQuantity());
                     ordetailDetailResponse.setInto_money(orderEntity.get(i).getOrder_detail().get(j).getInto_money());
                     ordetailDetailResponse.setDate_note(orderEntity.get(i).getOrder_detail().get(j).getDate_note());
                     String dateAsString = ordetailDetailResponse.getDateNoteAsString();
+                    // ProductDetail Response            trong                OrderDetail Response
                     ProductDetailResponse productDetailResponse = new ProductDetailResponse();
                     productDetailResponse.setId(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getId());
                     productDetailResponse.setDescription(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getDescription());
@@ -136,6 +138,7 @@ public class OrderServiceImpl implements OrderService {
                     productDetailResponse.setPrice(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getPrice());
                     productDetailResponse.setVideo(orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getVideo());
                     productDetailResponse.setQuantity_remain( orderEntity.get(i).getOrder_detail().get(j).getProduct_detail().getQuantity_remain() );
+                    //productDetailResponse.setColor();
                     ordetailDetailResponse.setProduct_detail(productDetailResponse);
                     orr.add(ordetailDetailResponse);
                 }
