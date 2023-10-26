@@ -32,9 +32,10 @@ public class ProductAPI {
 
     @GetMapping("/products")
     public List<ProductResponse> showProductAll(@RequestParam(value="name" , required = false) String name,
+                                                @RequestParam(value="category" , required = false) Integer cate_id,
                                                 @RequestParam(value="minPrice", required = false ) Float minPrice ,
                                                 @RequestParam(value="maxPrice", required = false ) Float maxPrice){
-        return productService.showAllProduct(name , minPrice , maxPrice);
+        return productService.showAllProduct(name ,cate_id, minPrice , maxPrice);
     }
 
 //    @GetMapping("/products")

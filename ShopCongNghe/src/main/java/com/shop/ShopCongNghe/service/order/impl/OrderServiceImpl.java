@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.math.BigDecimal;
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -54,7 +54,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Boolean saveOrder(OrderRequest order) {
         try {
-
+            BigDecimal yourDoubleValue = BigDecimal.valueOf(123456789.9999);
+            System.out.println(yourDoubleValue);
             java.util.Date currentDate = new java.util.Date();
             Date date_note = new Date(currentDate.getYear(), currentDate.getMonth(), currentDate.getDate());
 
@@ -77,6 +78,7 @@ public class OrderServiceImpl implements OrderService {
                     orderDetail.setQuantity(order.getOrderDetail().get(i).getQuantity());
                     orderDetail.setDate_note(date_note);
                     orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
+                    System.out.println(String.format("%.6E", (double) order.getOrderDetail().get(i).getInto_money() ));
                     orderDetail.setColor(order.getOrderDetail().get(i).getColor());
                     orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
                     //totalMoney += order.getOrderDetail().get(i).getQuantity() * order.getOrderDetail().get(i).getInto_money() ;
@@ -84,9 +86,10 @@ public class OrderServiceImpl implements OrderService {
                     Long quantity_remain = pro.getQuantity_remain() - order.getOrderDetail().get(i).getQuantity();
                     pro.setQuantity_remain(quantity_remain);
                     productDetailRepository.save(pro);
-                } 
+                }
 
                 orderEntity.setTotal_amount(totalMoney);
+
                 ordDe.add(orderDetail);
             }
             orderEntity.setOrder_detail(ordDe);

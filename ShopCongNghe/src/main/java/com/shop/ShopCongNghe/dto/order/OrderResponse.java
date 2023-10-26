@@ -12,7 +12,7 @@ public class OrderResponse {
 
     private Long id;
 
-    private Float total_money;
+    private float total_money;
 
     private Long status;
 
@@ -37,11 +37,11 @@ public class OrderResponse {
         this.id = id;
     }
 
-    public Float getTotal_money() {
+    public float getTotal_money() {
         return total_money;
     }
 
-    public void setTotal_money(Float total_money) {
+    public void setTotal_money(float total_money) {
         this.total_money = total_money;
     }
 

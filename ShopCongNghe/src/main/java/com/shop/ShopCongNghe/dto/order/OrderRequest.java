@@ -10,7 +10,7 @@ public class OrderRequest {
 
     private Long user_id;
 
-    private Float total_amount;
+    private float total_amount;
 
     private Long status;
 
@@ -41,11 +41,11 @@ public class OrderRequest {
         this.user_id = user_id;
     }
 
-    public Float getTotal_amount() {
+    public float getTotal_amount() {
         return total_amount;
     }
 
-    public void setTotal_amount(Float total_amount) {
+    public void setTotal_amount(float total_amount) {
         this.total_amount = total_amount;
     }
 

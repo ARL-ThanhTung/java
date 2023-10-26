@@ -77,12 +77,15 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-    public List<ProductResponse> showAllProduct( String name , Float minPrice , Float maxPrice  ) {
+    public List<ProductResponse> showAllProduct( String name ,Integer cate_id , Float minPrice , Float maxPrice  ) {
         List<ProductResponse> productResponses = new ArrayList<>();
         //List<ProductEntity> productEntity = productRepository.findAll();
         List<ProductEntity> productEntity = new ArrayList<>();
-        if ( name != null ){
-            productEntity = productRepository.findUsersByName(name ) ;
+        if (name != null && name.equals("") ){
+            productEntity = productRepository.findUsersByNameCateid("%" ) ;
+        }
+        else if ( name != null  ){
+            productEntity = productRepository.findUsersByNameCateid(name ) ;
         }
         else {
             productEntity = productRepository.findAll();
@@ -109,11 +112,14 @@ public class ProductServiceImpl implements ProductService {
                 category.setId( productEntity.get(i).getCategory().getId() );
                 category.setName( productEntity.get(i).getCategory().getName() );
                 proRes.setCategory( category );
+                if(cate_id != null && (int)cate_id!=category.getId() ){
+                    continue;
+                }
             }
 
             List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
             for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
-
+                int count = 0;
                 ProductDetailResponse productDetail = new ProductDetailResponse();
                 productDetail.setId(productEntity.get(i).getProductDetails().get(j).getId());
                 productDetail.setDescription(productEntity.get(i).getProductDetails().get(j).getDescription());
@@ -159,7 +165,7 @@ public class ProductServiceImpl implements ProductService {
                     }
                 }
                 productDetailResponses.add(productDetail);
-
+                break;
             }
             if (productDetailResponses.size() <= 0){
                 continue;

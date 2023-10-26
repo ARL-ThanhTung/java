@@ -14,7 +14,7 @@ public interface ProductService {
     ProductEntity saveProduct( ProductRequest productRequest );
     ProductEntity getProduct( Long id );
 
-    List<ProductResponse> showAllProduct(String name , Float minPrice , Float maxPrice);
+    List<ProductResponse> showAllProduct(String name ,Integer cate_id, Float minPrice , Float maxPrice);
     //List<ProductResponse> showAllProduct();
 
     List<ProductResponse> showAllProductCategory(long id);
