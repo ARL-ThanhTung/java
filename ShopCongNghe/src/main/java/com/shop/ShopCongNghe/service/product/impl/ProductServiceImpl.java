@@ -22,7 +22,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+import org.springframework.data.domain.Sort;
 import com.shop.ShopCongNghe.dto.category.CategoryResponse;
 import com.shop.ShopCongNghe.dto.product.ProductResponse;
 import com.shop.ShopCongNghe.dto.branch.BranchResponse;
@@ -184,7 +184,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductResponse> showAllProductCategory(long id) {
         List<ProductResponse> productResponses = new ArrayList<>();
-        List<ProductEntity> productEntity = productRepository.findByCategoryId(id);
+        List<ProductEntity> productEntity = productRepository.findByCategoryId(id , Sort.by(Sort.Order.desc("id")));
         for( int i = 0 ; i < productEntity.size() ; i++ ){
             ProductResponse proRes = new ProductResponse();
             proRes.setId(productEntity.get(i).getId());
@@ -193,7 +193,7 @@ public class ProductServiceImpl implements ProductService {
             proRes.setDescription( productEntity.get(i).getDescription() );
             proRes.setImage( productEntity.get(i).getImage() );
             proRes.setOrigin(productEntity.get(i).getOrigin());
-
+ 
             if (productEntity.get(i).getBranch() != null){
                 BranchResponse branch = new BranchResponse();
                 branch.setId( productEntity.get(i).getBranch().getId() );
