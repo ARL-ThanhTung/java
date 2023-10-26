@@ -81,11 +81,14 @@ public class ProductServiceImpl implements ProductService {
         List<ProductResponse> productResponses = new ArrayList<>();
         //List<ProductEntity> productEntity = productRepository.findAll();
         List<ProductEntity> productEntity = new ArrayList<>();
-        if (name != null && name.equals("") ){
+        if (name != null && name.equals("all") ){
             productEntity = productRepository.findUsersByNameCateid("%" ) ;
         }
         else if ( name != null  ){
             productEntity = productRepository.findUsersByNameCateid(name ) ;
+        }
+        else if(name == null){
+            productEntity = productRepository.findUsersByNameCateid("%" ) ;
         }
         else {
             productEntity = productRepository.findAll();
