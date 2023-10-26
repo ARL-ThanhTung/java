@@ -119,6 +119,7 @@ public class ProductServiceImpl implements ProductService {
                     continue;
                 }
             }
+            System.out.println("product_id: " + proRes.getId());
 
             List<ProductDetailResponse> productDetailResponses = new ArrayList<>();
             for( int j = 0 ; j < productEntity.get(i).getProductDetails().size() ; j++ ) {
@@ -168,13 +169,14 @@ public class ProductServiceImpl implements ProductService {
                     }
                 }
                 productDetailResponses.add(productDetail);
-                break;
+
             }
             if (productDetailResponses.size() <= 0){
                 continue;
             }
             proRes.setProduct_detail(productDetailResponses);
             productResponses.add(proRes);
+            System.out.println("product_id: End" );
         }
         return productResponses ;
     }

@@ -21,8 +21,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity,Long> {
 //    List<ProductEntity> findUsersByNameMinPriceMaxPrice(@Param("name") String name ,
 //                                                        @Param("minPrice") Float minPrice ,
 //                                                        @Param("maxPrice") Float maxPrice);
-    @Query("SELECT pro FROM ProductEntity  pro , ProductDetailEntity  prode WHERE pro.id = prode.product.id " +
-            "and pro.branch.name like %:name% ")
+    @Query("SELECT pro FROM ProductEntity  pro  WHERE pro.branch.name like %:name% ")
     List<ProductEntity> findUsersByNameCateid(@Param("name") String name );
 
 }
