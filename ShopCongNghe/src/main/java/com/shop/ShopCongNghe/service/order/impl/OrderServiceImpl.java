@@ -79,12 +79,18 @@ public class OrderServiceImpl implements OrderService {
                     orderDetail.setInto_money(order.getOrderDetail().get(i).getInto_money());
                     orderDetail.setColor(order.getOrderDetail().get(i).getColor());
                     orderDetail.setOrder(ord); // Đảm bảo thiết lập quan hệ với đơn hàng
-                    totalMoney += order.getOrderDetail().get(i).getQuantity() * order.getOrderDetail().get(i).getInto_money() ;
-                }
+                    //totalMoney += order.getOrderDetail().get(i).getQuantity() * order.getOrderDetail().get(i).getInto_money() ;
+                    totalMoney +=  order.getOrderDetail().get(i).getInto_money() ;
+                    Long quantity_remain = pro.getQuantity_remain() - order.getOrderDetail().get(i).getQuantity();
+                    pro.setQuantity_remain(quantity_remain);
+                    productDetailRepository.save(pro);
+                } 
+
                 orderEntity.setTotal_amount(totalMoney);
                 ordDe.add(orderDetail);
             }
             orderEntity.setOrder_detail(ordDe);
+            System.out.println(orderEntity.getTotal_amount());
             orderRepository.save(orderEntity);
             return true;
         } catch(Exception e){
